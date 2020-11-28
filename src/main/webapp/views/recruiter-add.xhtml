@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="title">Recruiter</ui:define>
+	<ui:define name="subtitle">#{recruiterBean.recruiter.id != 0 ? 'Edit Recruiter' : 'Add New Recruiter'}</ui:define>
+	<ui:define name="main_content">
+		<div class="container">
+			<div class="row">
+				<div class="col-10 offset-1 mt-4">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between px-4">
+							<h6 class="m-0 font-weight-bold text-primary">#{recruiterBean.recruiter.id
+								!= 0 ? 'Edit Recruiter' : 'Add New Recruiter'}</h6>
+
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12 px-4">
+									<h:form styleClass="form">
+										<h:inputHidden value="#{recruiterBean.recruiter.id}" />
+										<div class="form-group">
+											<h:outputLabel value="Name" />
+											<h:inputText value="#{recruiterBean.recruiter.name}"
+												styleClass="form-control" p:placeholder="Enter Name"
+												p:required="required" />
+										</div>
+										<div class="form-group">
+											<h:outputLabel value="Phone" />
+											<h:inputText value="#{recruiterBean.recruiter.phone}"
+												styleClass="form-control" p:placeholder="Enter Phone"
+												p:required="required" />
+										</div>
+										<div class="form-group">
+											<h:outputLabel value="Email" />
+											<h:inputText value="#{recruiterBean.recruiter.email}"
+												styleClass="form-control" p:placeholder="Enter Email"
+												p:type="email" />
+										</div>
+										<div class="form-group">
+											<h:outputLabel value="Password" />
+											<h:inputSecret value="#{recruiterBean.recruiter.password}"
+												p:placeholder="Enter Password" styleClass="form-control" />
+										</div>
+
+										<h:commandButton action="#{recruiterBean.saveRecruiter()}"
+											value="#{recruiterBean.recruiter.id != 0 ? 'Update' : 'Add'}"
+											styleClass="btn btn-primary mr-2 mt-4" />
+									</h:form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

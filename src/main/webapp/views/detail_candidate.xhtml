@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="subtitle">Candidate Profile</ui:define>
+	<ui:define name="main_content">
+		<!-- Begin Page Content -->
+		<div class="container">
+			<!-- Content Row -->
+			<div class="row">
+
+				<div class="col-xl-12 col-lg-12">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Candidate
+								Profile</h6>
+
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<p>Name:</p>
+									<p>Phone:</p>
+									<p>Email</p>
+									<p>Expected Salary:</p>
+									<p>Township:</p>
+									<p>CV Link:</p>
+									<p>Key Skills:</p>
+									<p>Availability:</p>
+								</div>
+								<div class="col-md-6">
+									<p>#{candidateBean.candidate.name != null ?
+										candidateBean.candidate.name : "-"}</p>
+									<p>#{candidateBean.candidate.phone != null ?
+										candidateBean.candidate.name : "-"}</p>
+									<p>#{candidateBean.candidate.email != null ?
+										candidateBean.candidate.email : "-"}</p>
+									<p>#{candidateBean.candidate.expectedSalary  != null ? candidateBean.candidate.expectedSalary  : "-"}</p>
+									<p>#{candidateBean.candidate.township.name != null ?
+										candidateBean.candidate.township.name  : "-"}</p>
+									<p>
+									<h:outputLink value="#{request.contextPath}/CV_Uploads/#{candidateBean.candidate.cv_form}">#{candidateBean.candidate.cv_form != null ?
+												candidateBean.candidate.cv_form  : '-'}</h:outputLink>
+										<!-- <a href="#{request.contextPath}/CV_Uploads/#{candidateBean.candidate.cv_form}">#{candidateBean.candidate.cv_form != null ?
+												candidateBean.candidate.cv_form  : '-'}</a> -->
+									
+										
+									</p>
+									<p>#{candidateBean.candidate.key_skills != null ?
+										candidateBean.candidate.key_skills : "-"}</p>
+									<p>#{candidateBean.candidate.availiability.description != null ?
+										candidateBean.candidate.availiability.description : "-"}</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-12 col-lg-12">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Other
+								Information</h6>
+
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<p>Entry By:</p>
+									<p>Entry Date:</p>
+									<p>Modified By:</p>
+									<p>Modified Date:</p>
+								</div>
+								<div class="col-md-6">
+									<p>#{candidateBean.candidate.entryBy.name != null ?
+										candidateBean.candidate.entryBy.name : "-"}</p>
+									<p>#{candidateBean.candidate.entry_date != null ?
+										candidateBean.candidate.entry_date : "-"}</p>
+									<p>#{candidateBean.candidate.modifyBy.name != null ?
+										candidateBean.candidate.modifyBy.name : "-"}</p>
+									<p>#{candidateBean.candidate.modify_date != null ?
+										candidateBean.candidate.modify_date : "-"}</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-check ml-4 my-4 text-center">
+						<div class="form-check">
+							<h:selectBooleanCheckbox value = "#{candidateBean.candidate.is_active }" id = "isactive"  styleClass="form-check-input"  p:readonly="readonly"/> 
+													Is Active?
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- <ui:fragment rendered="#{not empty companyBean.company_joborderlist}"> -->
+			<div class="col-xl-12 col-lg-12">
+				<div class="card shadow mb-4">
+					<!-- Card Header - Dropdown -->
+					<div
+						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-primary">Job Pipeline</h6>
+
+					</div>
+					<!-- Card Body -->
+					<div class="card-body">
+						<div class="row">
+							<div class="container ">
+								<div class="row pt-3">
+									<div class="table-responsive">
+										<h:dataTable styleClass=" table table-striped table-bordered"
+											value="#{jobPipelineBean.jobPipelineList}" var="j">
+											<h:column>
+												<f:facet name="header">ID </f:facet>
+												#{j.id }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Job Position</f:facet>
+												<h:link value="#{ j.joborder.job_position }"
+													outcome="/views/detail_joborder">
+													<f:param name="joborderid" value="#{j.joborder.id}"></f:param>
+												</h:link>
+
+											</h:column>
+											<h:column>
+												<f:facet name="header">Company</f:facet>
+												<h:link value="#{ j.joborder.company.name }"
+													outcome="/views/detail_company">
+													<f:param name="companyid" value="#{ j.joborder.company.id}"></f:param>
+												</h:link>
+
+											</h:column>
+											<h:column>
+												<f:facet name="header">Add Date</f:facet>
+												#{ j.entry_date }
+											</h:column>
+											
+											<h:column>
+												<f:facet name="header">Entry By</f:facet>
+												#{ j.entryBy.name }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Current Status Code</f:facet>
+												#{ j.candidatejoborderstatus.short_description }
+											</h:column>
+
+											<!-- <h:column>
+												<f:facet name="header">Action</f:facet>
+												<h:link value="Edit" outcome="/views/add-joborder">
+													<f:param name="joborderid" value="#{j.id}"></f:param>
+												</h:link>
+											</h:column> -->
+											<!-- <h:column>
+												<h:form>
+													<h:commandLink
+														action="#{jobOrderBean.removeJobOrder(j.id)}"
+														value="remove" />
+												</h:form>
+											</h:column> -->
+										</h:dataTable>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- </ui:fragment> -->
+			
+
+
+
+
+
+		</div>
+		<!-- /.container-fluid -->
+
+	</ui:define>
+</ui:composition>
+</html>

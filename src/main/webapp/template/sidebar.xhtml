@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head></h:head> 
+<body> 
+	<ui:composition>
+		<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+	id="accordionSidebar">
+
+	<!-- Sidebar - Brand -->
+	<a
+		class="sidebar-brand d-flex align-items-center justify-content-center"
+		href="index.html">
+		<div class="sidebar-brand-icon rotate-n-15">
+			<i class="fas fa-users"></i>
+		</div>
+		<div class="sidebar-brand-text mx-3">
+			SB Admin <sup>2</sup>
+		</div>
+	</a>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider my-0"/>
+
+	<!-- Nav Item - Dashboard -->
+	<li class="nav-item active"><a class="nav-link" href="index.html">
+			<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+	</a></li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider"/>
+
+	<!-- Heading -->
+	<div class="sidebar-heading">Interface</div>
+
+	<!-- Nav Item - Pages Collapse Menu -->
+	<li class="nav-item">
+		 <h:link value="Job Orders" outcome="/views/joborders" styleClass="nav-link">
+		 
+		 </h:link>
+	</li>
+
+	<li class="nav-item">
+			<h:link value="Candidates"
+					outcome="/views/candidates" styleClass="nav-link"></h:link>
+	</li>
+
+	<li class="nav-item">
+	<h:link value="Companies"
+					outcome="/views/companys" styleClass="nav-link"></h:link>
+	</li>
+
+
+
+	<!-- Divider -->
+	<hr class="sidebar-divider"/>
+
+	<!-- Heading -->
+	<div class="sidebar-heading">Addons</div>
+
+	<li class="nav-item">
+		<h:link value="Recruiters"
+					outcome="/views/recruiters" styleClass="nav-link"></h:link>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link" href="charts.html"> <i
+				class=""></i> <span>Activities</span>
+		</a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider d-none d-md-block"/>
+
+	<!-- Sidebar Toggler (Sidebar) -->
+	<div class="text-center d-none d-md-inline">
+		<button class="rounded-circle border-0" id="sidebarToggle"></button>
+	</div>
+
+</ul>
+<!-- End of Sidebar -->
+	</ui:composition>
+</body> 
+</html>

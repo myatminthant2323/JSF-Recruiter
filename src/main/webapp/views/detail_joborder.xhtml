@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+<ui:define name="subtitle">Job Order Detail</ui:define>
+	<ui:define name="main_content">
+		<!-- Begin Page Content -->
+				<div class="container mt-5">
+					<!-- Content Row -->
+					<div class="row">
+
+						<div class="col-xl-7 col-lg-7">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Job Order Detail</h6>
+
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-6">
+											<p>Job Position:</p>
+											<p>Basic Salary:</p>
+											<p>No of Employee:</p>
+											<p>Company:</p>
+											<p>Job Location:</p>
+										</div>
+										<div class="col-md-6">
+											<p>#{jobOrderBean.joborder.job_position != null ? jobOrderBean.joborder.job_position : "-"} </p>
+											<p>#{jobOrderBean.joborder.basic_salary != null ? jobOrderBean.joborder.basic_salary : "-"}  </p>
+											<p>#{jobOrderBean.joborder.total_employee != null ?jobOrderBean.joborder.total_employee : "-"}  </p>
+											<p>#{jobOrderBean.joborder.company.name != null ? jobOrderBean.joborder.company.name : "-"}  </p>
+											<p>#{jobOrderBean.joborder.job_location.name != null ? jobOrderBean.joborder.job_location.name : "-"}  </p>
+											
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-5 col-lg-5">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Other
+										Information</h6>
+
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-6">
+											<p>Entry By:</p>
+											<p>Entry Date:</p>
+											<p>Modified By:</p>
+											<p>Modified Date:</p>
+										</div>
+										<div class="col-md-6">
+											<p>#{jobOrderBean.joborder.entryBy.name != null ? jobOrderBean.joborder.entryBy.name : "-"}</p>
+											<p>#{jobOrderBean.joborder.entry_date != null ? jobOrderBean.joborder.entry_date : "-"}</p>
+											<p>#{jobOrderBean.joborder.modifyBy.name != null ? jobOrderBean.joborder.modifyBy.name : "-"}</p>
+											<p>#{jobOrderBean.joborder.modify_date != null ? jobOrderBean.joborder.modify_date : "-"}</p>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-check ml-4">
+								<div class="form-check">
+													<h:selectBooleanCheckbox value = "#{jobOrderBean.joborder.is_active}" id = "isactive"  styleClass="form-check-input" p:readonly="readonly"/> 
+													Is Active?
+												</div>
+							</div>
+						</div>
+					</div>
+			<div class="row pt-3">
+				<div class="col-xl-12 col-lg-12">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Job
+								Description</h6>
+
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+								<div class="container-fluid px-0">
+								#{jobOrderBean.joborder.job_description != null ?
+												jobOrderBean.joborder.job_description : "-"}
+									<!-- <div class="row pt-3">
+										<div class="col-md-12">
+											
+										</div>
+									</div> -->
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="row pt-4">
+				<div class="col-xl-12 col-lg-12">
+				<div class="card shadow mb-4">
+					<!-- Card Header - Dropdown -->
+					<div
+						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-primary">Candidate Pipeline</h6>
+
+					</div>
+					<!-- Card Body -->
+					<div class="card-body">
+						<div class="row">
+							<div class="container ">
+								<div class="row pt-3">
+									<div class="table-responsive">
+										<h:dataTable id="table" styleClass=" table table-striped table-bordered"
+											value="#{jobPipelineBean.joborder_jobPipelineList}" var="j">
+											<h:column>
+												<f:facet name="header">ID </f:facet>
+												#{j.id }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Name</f:facet>
+												<h:link value="#{ j.candidate.name }"
+													outcome="/views/detail_candidate">
+													<f:param name="candidateid" value="#{j.candidate.id}"></f:param>
+												</h:link>
+
+											</h:column>
+											
+											<h:column>
+												<f:facet name="header">Added</f:facet>
+												#{ j.entry_date }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Entry By</f:facet>
+												#{ j.entryBy.name }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Status</f:facet>
+												#{ j.candidatejoborderstatus.short_description }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Last Activity</f:facet>
+												---
+											</h:column>
+											<h:column>
+												<f:facet name="header">Action</f:facet>
+												<h:link value="" outcome=""  styleClass="btn btn-primary">
+													<f:param name="jobpipelineid" value="#{j.id}"></f:param>
+													<i class="fas fa-edit"></i>
+												</h:link>
+											</h:column>
+											<h:column>
+												<h:form>
+													<h:commandLink
+														action="#{jobPipelineBean.removeJobPipeline(j.id)}"
+														value=""  styleClass="btn btn-danger">
+														<i class="fas fa-trash"></i>
+													</h:commandLink>
+												</h:form>
+											</h:column>
+										</h:dataTable>
+
+									</div>
+									<h:link value="Add Candidate To This Job Order Pipeline" outcome="/views/add-job-pipeline"  styleClass="pt-3">
+										<f:param name="joborderid" value="#{jobOrderBean.joborder.id}"></f:param>
+									</h:link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+
+		</div>
+				<!-- /.container-fluid -->
+		
+	</ui:define>
+</ui:composition>
+</html>

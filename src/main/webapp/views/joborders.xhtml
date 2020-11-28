@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="subtitle">All Job Orders</ui:define>
+	<ui:define name="main_content">
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h:link value="Add New Job Order" outcome="/views/add-joborder"
+					styleClass="btn btn-primary"></h:link>
+
+			</div>
+
+			<!-- Content Row -->
+			<div class="row">
+				<div class="container ">
+					<div class="row pt-3">
+						<div class="table-responsive">
+							<h:dataTable styleClass=" table table-striped table-bordered"
+								value="#{jobOrderBean.joborderlist}" var="j">
+								<h:column>
+									<f:facet name="header">ID </f:facet>
+									#{j.id }
+								</h:column>
+								<h:column>
+									<f:facet name="header">Job Position</f:facet>
+									<h:link value="#{ j.job_position }" outcome="/views/detail_joborder">
+											<f:param name="joborderid" value="#{j.id}"></f:param>
+									</h:link>
+									
+								</h:column>
+								<h:column>
+									<f:facet name="header">Company</f:facet>
+									<h:link value="#{ j.company.name }" outcome="/views/detail_company">
+											<f:param name="companyid" value="#{j.company.id}"></f:param>
+									</h:link>
+									
+								</h:column>
+								<h:column>
+									<f:facet name="header">Job Location</f:facet>
+									#{ j.job_location.name }
+								</h:column>
+								<!-- <h:column>
+									<f:facet name="header">Job Description</f:facet>
+									#{ j.job_description }
+								</h:column> -->
+								<h:column>
+									<f:facet name="header">Basic Salary</f:facet>
+									#{ j.basic_salary }
+								</h:column>
+								<h:column>
+									<f:facet name="header">Total Employee</f:facet>
+									#{ j.total_employee }
+								</h:column>
+								
+								<h:column>
+								<f:facet name="header">Action</f:facet>
+									<h:link value="Edit" outcome="/views/add-joborder" styleClass="btn btn-primary" >
+										<f:param name="joborderid" value="#{j.id}"></f:param>
+									</h:link>
+								</h:column>
+								<h:column>
+									<h:form>
+										<h:commandLink action="#{jobOrderBean.removeJobOrder(j.id)}"
+											value="remove"  styleClass="btn btn-danger" >
+										</h:commandLink>
+									</h:form>
+								</h:column>
+							</h:dataTable>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+	</ui:define>
+</ui:composition>
+</html>

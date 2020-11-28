@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="subtitle">#{companyBean.company.id != 0 ? 'Edit Company' : 'Add New Company'}</ui:define>
+	<ui:define name="main_content">
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Content Row -->
+			<div class="row">
+				<div class="container ">
+					<div class="row pt-3">
+						<div class="col-md-12">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between px-4">
+									<h6 class="m-0 font-weight-bold text-primary">#{companyBean.company.id != 0 ? 'Edit Company' : 'Add New Company'}</h6>
+
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12 px-3">
+											<h:form styleClass="form">
+												<h:inputHidden value="#{companyBean.company.id}" />
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText value="#{companyBean.company.name}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Company Name" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:inputText value="#{companyBean.company.phone1}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Phone 1" p:type="number" />
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText value="#{companyBean.company.address}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Company Address" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:inputText value="#{companyBean.company.phone2}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Phone 2" p:type="number" />
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText value="#{companyBean.company.website}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Website" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:inputText value="#{companyBean.company.ownerName}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Owner Name" />
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText value="#{companyBean.company.email}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Company Email" p:type="email" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:selectOneMenu value="#{companyBean.company.township}"
+															styleClass="form-control">
+															<f:selectItems value="#{townshipBean.townshipList}"
+																itemValue="#{t}" var="t" itemLabel="#{t.name}"></f:selectItems>
+															<f:converter binding="#{townshipConverter}"></f:converter>
+														</h:selectOneMenu>
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<div class="form-check">
+															<h:selectBooleanCheckbox
+																value="#{companyBean.company.ishot}" id="ishot"
+																styleClass="form-check-input " />
+															Is Hot?
+														</div>
+													</div>
+													<div class="form-group col-md-6">
+														<h:inputTextarea value="#{companyBean.company.remark}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Remark" />
+													</div>
+												</div>
+
+												<div class="d-flex justify-content-center">
+													<h:commandButton action="#{companyBean.saveCompany()}"
+														value="#{companyBean.company.id != 0 ? 'Update' : 'Add'}" styleClass="btn btn-primary" />
+												</div>
+											</h:form>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

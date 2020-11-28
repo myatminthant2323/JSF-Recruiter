@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="dataTables.bootstrap4.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="webjars" name="font-awesome/5.8.2/css/all.min-jsf.css" />
+	<h:outputStylesheet library="webjars" name="font-awesome/5.8.2/css/v4-shims.min-jsf.css" />
+	<h:outputStylesheet library="css" name="all.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="fontawesome.min.css"></h:outputStylesheet>
+	
+	<h:outputStylesheet library="css" name="sb-admin-2.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="custom.css"></h:outputStylesheet>
+	<title><ui:insert name="title">Name</ui:insert></title>
+
+</h:head>
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <ui:include src="/template/sidebar.xhtml" />
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <ui:include src="/template/menu.xhtml" />
+
+        <ui:insert name="main_content">
+				
+			</ui:insert>
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+<ui:include src="/template/modals.xhtml" />
+
+  	<h:outputScript library="js" name="jquery.min.js"></h:outputScript>
+	<h:outputScript library="js" name="bootstrap.bundle.min.js"></h:outputScript>
+	<h:outputScript library="js" name="fontawesome.min.js"></h:outputScript>
+	<h:outputScript library="js" name="jquery.easing.min.js"></h:outputScript>
+	<h:outputScript library="js" name="jquery.dataTables.min.js"></h:outputScript>
+	<h:outputScript library="js" name="dataTables.bootstrap4.min.js"></h:outputScript>
+	<h:outputScript library="js" name="Chart.min.js"></h:outputScript>
+	<h:outputScript library="js" name="chart-area-demo.js"></h:outputScript>
+	<h:outputScript library="js" name="chart-pie-demo.js"></h:outputScript>
+	<h:outputScript library="js" name="myjs.js"></h:outputScript>
+ 	
+ 	<script type="text/javascript">
+ 	$(document).ready(function() {
+ 		  $('.table').DataTable();
+ 		});
+ 	</script>
+</body>
+
+
+
+
+
+</html>

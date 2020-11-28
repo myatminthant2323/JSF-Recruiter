@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="subtitle">About Company</ui:define>
+	<ui:define name="main_content">
+		<!-- Begin Page Content -->
+		<div class="container">
+			<!-- Content Row -->
+			<div class="row">
+
+				<div class="col-xl-7 col-lg-7">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Company
+								Profile</h6>
+
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<p>Name:</p>
+									<p>Phone1:</p>
+									<p>Phone2</p>
+									<p>Email:</p>
+									<p>Website:</p>
+									<p>Township:</p>
+									<p>Owner Name:</p>
+									<p>Address:</p>
+								</div>
+								<div class="col-md-6">
+									<p>#{companyBean.company.name != null ?
+										companyBean.company.name : "-"}</p>
+									<p>#{companyBean.company.phone1 != null ?
+										companyBean.company.phone1 : "-"}</p>
+									<p>#{companyBean.company.phone2 != null ?
+										companyBean.company.phone2 : "-"}</p>
+									<p>#{companyBean.company.email != null ?
+										companyBean.company.email : "-"}</p>
+									<p>#{companyBean.company.website != null ?
+										companyBean.company.website : "-"}</p>
+									<p>#{companyBean.company.township.name != null ?
+										companyBean.company.township.name : "-"}</p>
+									<p>#{companyBean.company.ownerName != null ?
+										companyBean.company.ownerName : "-"}</p>
+									<p>#{companyBean.company.address != null ?
+										companyBean.company.address : "-"}</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-5 col-lg-5">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Other
+								Information</h6>
+
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<p>Entry By:</p>
+									<p>Entry Date:</p>
+									<p>Modified By:</p>
+									<p>Modified Date:</p>
+									<p>Misc Notes:</p>
+								</div>
+								<div class="col-md-6">
+									<p>#{companyBean.company.entryBy.name != null ?
+										companyBean.company.entryBy.name : "-"}</p>
+									<p>#{companyBean.company.entry_date != null ?
+										companyBean.company.entry_date : "-"}</p>
+									<p>#{companyBean.company.modifyBy.name != null ?
+										companyBean.company.modifyBy.name : "-"}</p>
+									<p>#{companyBean.company.modifyDate != null ?
+										companyBean.company.modifyDate : "-"}</p>
+									<p>#{companyBean.company.remark != null ?
+										companyBean.company.remark : "-"}</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-check ml-4">
+						<div class="form-check">
+							<h:selectBooleanCheckbox value = "#{companyBean.company.ishot }" id = "ishot"  styleClass="form-check-input"  p:readonly="readonly"/> 
+													Is Hot?
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- <ui:fragment rendered="#{not empty companyBean.company_joborderlist}"> -->
+			<div class="col-xl-12 col-lg-12">
+				<div class="card shadow mb-4">
+					<!-- Card Header - Dropdown -->
+					<div
+						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-primary">Job Orders</h6>
+
+					</div>
+					<!-- Card Body -->
+					<div class="card-body">
+						<div class="row">
+							<div class="container ">
+								<div class="row pt-3">
+									<div class="table-responsive">
+										<h:dataTable styleClass=" table table-striped table-bordered"
+											value="#{companyBean.company_joborderlist}" var="j">
+											<h:column>
+												<f:facet name="header">ID </f:facet>
+												#{j.id }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Job Position</f:facet>
+												<h:link value="#{ j.job_position }"
+													outcome="/views/detail_joborder">
+													<f:param name="joborderid" value="#{j.id}"></f:param>
+												</h:link>
+
+											</h:column>
+											
+											<h:column>
+												<f:facet name="header">Job Location</f:facet>
+												#{ j.job_location.name }
+											</h:column>
+											<!-- <h:column>
+												<f:facet name="header">Job Description</f:facet>
+												#{ j.job_description }
+											</h:column> -->
+											<h:column>
+												<f:facet name="header">Basic Salary</f:facet>
+												#{ j.basic_salary }
+											</h:column>
+											<h:column>
+												<f:facet name="header">Total Employee</f:facet>
+												#{ j.total_employee }
+											</h:column>
+
+											<h:column>
+												<f:facet name="header">Action</f:facet>
+												<h:link value="Edit" outcome="/views/add-joborder">
+													<f:param name="joborderid" value="#{j.id}"></f:param>
+												</h:link>
+											</h:column>
+											<h:column>
+												<h:form>
+													<h:commandLink
+														action="#{jobOrderBean.removeJobOrder(j.id)}"
+														value="remove" />
+												</h:form>
+											</h:column>
+										</h:dataTable>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- </ui:fragment> -->
+			
+
+
+
+
+
+		</div>
+		<!-- /.container-fluid -->
+
+	</ui:define>
+</ui:composition>
+</html>

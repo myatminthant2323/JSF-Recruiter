@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="subtitle">Add Canditate</ui:define>
+	<ui:define name="main_content">
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Content Row -->
+			<div class="row">
+				<div class="container ">
+					<div class="row pt-3">
+						<div class="col-md-12">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between px-4">
+									<h6 class="m-0 font-weight-bold text-primary">#{candidateBean.candidate.id
+										!= 0 ? 'Edit Candidate' : 'Add New Candidate'}</h6>
+
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12 px-3">
+											<h:form styleClass="form" enctype="multipart/form-data">
+											<h:messages></h:messages>
+												<h:inputHidden value="#{candidateBean.candidate.id}" />
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText value="#{candidateBean.candidate.name}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Candidate Name" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:inputText value="#{candidateBean.candidate.email}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Email" />
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText value="#{candidateBean.candidate.phone}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Phone" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:selectOneMenu
+															value="#{candidateBean.candidate.township}"
+															styleClass="form-control">
+															<f:selectItems value="#{townshipBean.townshipList}"
+																itemValue="#{t}" var="t" itemLabel="#{t.name}"></f:selectItems>
+															<f:converter binding="#{townshipConverter}"></f:converter>
+														</h:selectOneMenu>
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText value="#{candidateBean.candidate.key_skills}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Key Skills" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:selectOneMenu
+															value="#{candidateBean.candidate.availiability}"
+															styleClass="form-control">
+															<f:selectItems
+																value="#{availabilityTypeBean.availabilitytypeList}"
+																itemValue="#{at}" var="at" itemLabel="#{at.description}"></f:selectItems>
+															<f:converter binding="#{availabilityTypeConverter}"></f:converter>
+														</h:selectOneMenu>
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<h:inputText
+															value="#{candidateBean.candidate.expectedSalary}"
+															styleClass="form-control" p:required="required"
+															p:placeholder="Salary" p:type="number" />
+													</div>
+													<div class="form-group col-md-6">
+														<h:inputFile id="file-id"
+															value="#{candidateBean.cv_form}"
+															alt="upload file"></h:inputFile>
+													</div>
+												</div>
+												<div class="form-row mb-4 mt-4">
+													<div class="form-group col-md-6 ">
+														<div class="form-check">
+															<h:selectBooleanCheckbox
+																value="#{candidateBean.candidate.is_active}"
+																id="isactive" styleClass="form-check-input " />
+															Is Active?
+														</div>
+													</div>
+												</div>
+
+												<div class="d-flex justify-content-center">
+													<h:commandButton action="#{candidateBean.saveCandidate()}" value="#{candidateBean.candidate.id != 0 ? 'Update' : 'Add'}" styleClass="btn btn-primary">
+														<f:ajax execute="@form" listener="#{candidateBean.uploadFile()}"></f:ajax> <!-- render="divId" -->
+													</h:commandButton>
+												</div>
+											</h:form>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
+

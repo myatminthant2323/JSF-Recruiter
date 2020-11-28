@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="all.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="webjars" name="font-awesome/5.8.2/css/all.min-jsf.css" />
+<h:outputStylesheet library="webjars" name="font-awesome/5.8.2/css/v4-shims.min-jsf.css" />
+	
+	<h:outputStylesheet library="css" name="sb-admin-2.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="dataTables.bootstrap4.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="custom.css"></h:outputStylesheet>
+	<title><ui:insert name="title">Login</ui:insert></title>
+
+</h:head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                  </div>
+                  <h:form styleClass="user" id="login">
+											<h:message  for="login"  styleClass="text-danger" />
+											<span class="text-danger">${error_message != null ? error_message : ""}</span>
+											
+										
+                  <div class="form-group">
+								<h:outputLabel value="Email" />
+								<h:inputText value="#{loginBean.email}" styleClass="form-control form-control-user"  p:placeholder="Enter Email.."  p:type=""  validatorMessage="Please Enter email !"  id="email">
+									<f:validateRequired></f:validateRequired>
+								</h:inputText>
+								<h:message  for="email" styleClass="text-danger"/>
+					</div>
+					<div class="form-group">
+								<h:outputLabel value="Password" />
+								<h:inputSecret value="#{loginBean.password}"   p:placeholder="Password" styleClass="form-control form-control-user" validatorMessage="Please enter at least 3 charactors!"  id="password">
+									<f:validateLength minimum="3"></f:validateLength>
+								</h:inputSecret>
+								<h:message for="password" styleClass="text-danger"/>
+					</div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" />
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div>
+                    </div>
+                    <h:commandButton action="#{loginBean.authenticateUser()}" actionListener="#{loginBean.checkUser()}" value="Login" styleClass="btn btn-primary btn-user btn-block" />
+                   
+                    <hr />
+                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Login with Google
+                    </a>
+                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                    </a>
+                  </h:form>
+                  <hr />
+                  <div class="text-center">
+                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="register.html">Create an Account!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
+
