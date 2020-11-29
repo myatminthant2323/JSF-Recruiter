@@ -10,11 +10,11 @@
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
-
+		<h:form styleClass="d-inline">
 			<!-- Page Heading -->
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h:form styleClass="d-inline">
+				
 					<h:commandLink action="#{jobPipelineBean.saveJobPipline()}"
 						value="Add" styleClass="btn btn-primary">
 					</h:commandLink>
@@ -23,7 +23,7 @@
 					</h:link> | Company : <h:link value="#{jobPipelineBean.joborder.company.name}" outcome="/views/detail_company">
 											<f:param name="companyid" value="#{jobPipelineBean.joborder.company.id}"></f:param>
 									</h:link>)</span>
-				</h:form>
+				
 				
 			</div>
 
@@ -33,18 +33,17 @@
 					<div class="row pt-3">
 					
 						<div class="table-responsive">
-						<h:form styleClass="form">
 							
 							<h:dataTable  id="dataTable" styleClass=" table table-striped table-bordered" value="#{jobPipelineBean.candidate_jobPipelineList}" var="c">
 							
 								<h:column>
 									<f:facet name="header">ID</f:facet>
-									<h:selectBooleanCheckbox value="#{jobPipelineBean.check_each_candidate}"  styleClass="mr-2" id="checkbox">
+									<h:selectBooleanCheckbox value="#{jobPipelineBean.checkedCandidates[c.id]}"  styleClass="mr-2" id="checkbox">
 									
-									<f:ajax event="change" execute="@this"  render="check_candidate" listener="#{jobPipelineBean.CheckedById(c.id)}"></f:ajax> 
+									
+									
 									</h:selectBooleanCheckbox>
 									#{c.id }
-									<!-- <h:selectBooleanCheckbox  value=""  id = "chkRememberMe"  styleClass="mr-2" />#{c.id } -->
 								</h:column>
 								<h:column>
 									<f:facet name="header">Name</f:facet>
@@ -74,13 +73,12 @@
 								</h:column> -->
 								
 							</h:dataTable>
-							</h:form>
 						</div>
 						
 					</div>
 				</div>
 			</div>
-
+		</h:form>
 		</div>
 		<!-- /.container-fluid -->
 	</ui:define>

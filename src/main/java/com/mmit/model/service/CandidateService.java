@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.mmit.model.entity.Candidate;
-import com.mmit.model.entity.Company;
 
 @Stateless
 public class CandidateService {

@@ -21,6 +21,14 @@
 	     <artifactId>font-awesome</artifactId>
 	     <version>5.8.2</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.webjars/summernote -->
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>summernote</artifactId>
+    <version>0.8.9</version>
+</dependency>
+
+	
   </dependencies>
   <build>
   	<finalName>

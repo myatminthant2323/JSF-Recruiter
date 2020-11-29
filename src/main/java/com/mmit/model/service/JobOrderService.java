@@ -7,9 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import com.mmit.model.entity.Company;
 import com.mmit.model.entity.JobOrder;
-import com.mmit.model.entity.JobPipeline;
 
 @Stateless
 public class JobOrderService {

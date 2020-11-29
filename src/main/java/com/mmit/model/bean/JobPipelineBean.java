@@ -38,7 +38,6 @@ public class JobPipelineBean implements Serializable {
 	private List<JobPipeline> joborder_jobPipelineList;
 	private List<Candidate> candidate_jobPipelineList;
 	
-	private Boolean check_each_candidate = false;
 	
 	@EJB
 	private JobPipelineService service;
@@ -87,27 +86,16 @@ public class JobPipelineBean implements Serializable {
 					jobPipelineList = service.findByCandidate(jobpipeline.getId());
 			}
 		}
-//		
 		
 		
 	}
 	
-	 public void booleanBoxChanged(Long id, String state) {
-	        System.err.println("state changed: " + id + " " + state);
-	        System.out.println("Changed");
-	    }
 	
-	
-	public String CheckedById(int id) {
-		checkedCandidates.put(id, check_each_candidate);
-		return null;
-	}
 	
 	
 	public String saveJobPipline() {
         for (Entry<Integer, Boolean> can : checkedCandidates.entrySet()) {
-        	System.out.println("Value: " + can.getValue());
-                System.out.println("checked: " + can.getKey());
+        	System.out.println("key: "+ can.getKey() +"value:" +can.getValue() );
                 if(can.getValue() == true) {
                 	Candidate candidate = candidateService.findById( can.getKey());
                 	JobPipeline jobPipeline = new JobPipeline();
@@ -189,13 +177,7 @@ public class JobPipelineBean implements Serializable {
 		this.checkedCandidates = checkedCandidates;
 	}
 
-	public boolean isCheck_each_candidate() {
-		return check_each_candidate;
-	}
-
-	public void setCheck_each_candidate(boolean check_each_candidate) {
-		this.check_each_candidate = check_each_candidate;
-	}
+	
 
 
 	

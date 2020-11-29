@@ -13,7 +13,7 @@
 	<h:outputStylesheet library="webjars" name="font-awesome/5.8.2/css/v4-shims.min-jsf.css" />
 	<h:outputStylesheet library="css" name="all.min.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="fontawesome.min.css"></h:outputStylesheet>
-	
+	<h:outputStylesheet library="css" name="summernote.min.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="sb-admin-2.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="custom.css"></h:outputStylesheet>
 	<title><ui:insert name="title">Name</ui:insert></title>
@@ -67,6 +67,7 @@
   	<h:outputScript library="js" name="jquery.min.js"></h:outputScript>
 	<h:outputScript library="js" name="bootstrap.bundle.min.js"></h:outputScript>
 	<h:outputScript library="js" name="fontawesome.min.js"></h:outputScript>
+	<h:outputScript library="js" name="summernote.min.js"></h:outputScript>
 	<h:outputScript library="js" name="jquery.easing.min.js"></h:outputScript>
 	<h:outputScript library="js" name="jquery.dataTables.min.js"></h:outputScript>
 	<h:outputScript library="js" name="dataTables.bootstrap4.min.js"></h:outputScript>
@@ -78,6 +79,7 @@
  	<script type="text/javascript">
  	$(document).ready(function() {
  		  $('.table').DataTable();
+ 		 $('#summernote').summernote();
  		});
  	</script>
 </body>
