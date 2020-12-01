@@ -14,16 +14,17 @@
 			<!-- Page Heading -->
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				
+				<div>
 					<h:commandLink action="#{jobPipelineBean.saveJobPipline()}"
-						value="Add" styleClass="btn btn-primary">
+						value="" styleClass="btn btn-primary">
+						<i class="fas fa-plus mr-1"></i>Add Candidate
 					</h:commandLink>
 					<span class="pl-2"> (Position : <h:link value="#{jobPipelineBean.joborder.job_position}" outcome="/views/detail_joborder">
 						<f:param name="joborderid" value="#{jobPipelineBean.joborder.id}"></f:param>
 					</h:link> | Company : <h:link value="#{jobPipelineBean.joborder.company.name}" outcome="/views/detail_company">
 											<f:param name="companyid" value="#{jobPipelineBean.joborder.company.id}"></f:param>
 									</h:link>)</span>
-				
+				</div>
 				
 			</div>
 

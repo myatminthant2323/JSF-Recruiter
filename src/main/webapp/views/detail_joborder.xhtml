@@ -18,7 +18,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Job Order Detail</h6>
+									<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-suitcase mr-1"></i>Job Order Detail</h6>
 
 								</div>
 								<!-- Card Body -->
@@ -50,7 +50,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Other
+									<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-info-circle mr-1"></i>Other
 										Information</h6>
 
 								</div>
@@ -87,7 +87,7 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Job
+							<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-suitcase mr-1"></i>Job
 								Description</h6>
 
 						</div>
@@ -113,7 +113,7 @@
 					<!-- Card Header - Dropdown -->
 					<div
 						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary">Candidate Pipeline</h6>
+						<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-link mr-1"></i>Candidate Pipeline</h6>
 
 					</div>
 					<!-- Card Body -->
@@ -172,8 +172,8 @@
 										</h:dataTable>
 
 									</div>
-									<h:link value="Add Candidate To This Job Order Pipeline" outcome="/views/add-job-pipeline"  styleClass="pt-3">
-										<f:param name="joborderid" value="#{jobOrderBean.joborder.id}"></f:param>
+									<h:link value="" outcome="/views/add-job-pipeline"  styleClass="pt-3">
+										<f:param name="joborderid" value="#{jobOrderBean.joborder.id}"></f:param><i class="fas fa-user-plus mr-1"></i>Add Candidate To This Job Order Pipeline
 									</h:link>
 								</div>
 							</div>
