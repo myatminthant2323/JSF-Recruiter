@@ -20,7 +20,11 @@ public class CandidateJoborderStatus implements Serializable {
 	@OneToMany(mappedBy = "candidatejoborderstatus")
 	private List<JobPipeline> jobpipeline;
 	
+	@OneToMany(mappedBy = "fromstatus")
+	private List<Pipelinehistory> fromstatus_pipelinehistory;
 	
+	@OneToMany(mappedBy = "tostatus")
+	private List<Pipelinehistory> tostatus_pipelinehistory;
 	public int getId() {
 		return id;
 	}

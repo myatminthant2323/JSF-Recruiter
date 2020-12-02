@@ -8,15 +8,15 @@ INSERT INTO AvailabilityType  (`description`) VALUES ('2 week');
 INSERT INTO AvailabilityType  (`description`) VALUES ('1 or 2 month');
 
 INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('100', 'Added');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('200', 'Contacted');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('300', 'Qualifying');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('400', 'Submitted');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('200', 'Interview Request');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('300', 'Interview Accept');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('400', 'Interview Reject');
 INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('500', 'First Interview');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('600', 'Offered');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('700', 'Client Declined');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('800', 'Placed');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('900', 'Second Interview');
-INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('1000', 'Third Interview');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('600', 'Second Interview');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('700', 'Third Interview');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('800', 'Offered');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('900', 'Placed');
+INSERT INTO CandidateJoborderStatus  (`id`,`short_description`) VALUES ('1000', 'Candidate Declined');
 
 
 

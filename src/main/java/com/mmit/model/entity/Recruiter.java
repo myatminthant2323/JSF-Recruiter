@@ -45,6 +45,10 @@ public class Recruiter implements Serializable {
 	
 	@OneToMany(mappedBy = "entryBy")
 	private List<JobPipeline> jobpipeline_entry;
+	
+	@OneToMany(mappedBy = "actionUserId")
+	private List<Pipelinehistory> pipelinehistory;
+	
 	private static final long serialVersionUID = 1L;
 	
 	public Recruiter() {

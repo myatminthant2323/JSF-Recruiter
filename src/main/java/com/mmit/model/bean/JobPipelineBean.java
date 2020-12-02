@@ -72,7 +72,6 @@ public class JobPipelineBean implements Serializable {
 				 for (Entry<Integer, Boolean> entry : checkedCandidates.entrySet()) {
 					 System.out.println("key: "+ entry.getKey() +"value:" +entry.getValue() );
 				 }
-					/* checkedCandidates2 = checkedCandidates; */
 			}
 			
 			
@@ -90,7 +89,11 @@ public class JobPipelineBean implements Serializable {
 		
 	}
 	
-	
+	public String removeJobPipeline(int jpid) {
+		service.delete(jpid);
+		return "/views/detail_joborder?faces-redirect=true&joborderid=" + joborder.getId();
+		
+	}
 	
 	
 	public String saveJobPipline() {

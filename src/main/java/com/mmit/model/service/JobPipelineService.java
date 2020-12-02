@@ -4,7 +4,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import com.mmit.model.entity.JobPipeline;
 
 @Stateless
@@ -41,6 +40,11 @@ public class JobPipelineService {
 	public void save(JobPipeline jobPipeline) {
 		em.persist(jobPipeline);
 		
+	}
+
+	public void delete(int jpid) {
+		JobPipeline jobpipeline = em.find(JobPipeline.class, jpid);
+		em.remove(jobpipeline);
 	}
 
 

@@ -2,6 +2,7 @@ package com.mmit.model.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -42,6 +43,8 @@ public class JobPipeline implements Serializable {
 	@JoinColumn(name = "modifyBy", referencedColumnName = "id")
 	private Recruiter modifyBy;
 	
+	@OneToMany(mappedBy = "piplelineId")
+	private List<Pipelinehistory> pipelinehistory;
 	private static final long serialVersionUID = 1L;
 
 	
