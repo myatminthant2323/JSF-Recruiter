@@ -313,7 +313,13 @@
 			 				 if($('#interview_date').val() == ""){ 
 			 					 $('#interview_date').prop("required",true);
 			 					 $('#interval').prop("required",true);
-				 				 alert("Please enter interview schedule !");
+			 					 swal({
+			 				          title: "Error Occurs!",
+			 				          text: "Please enter interview schedule !",
+			 				          icon: "error",
+			 				          button: "OK",
+			 				        });
+				 				/*  alert("Please enter interview schedule !"); */
 			 				 }
 			 			}
 			 		});
