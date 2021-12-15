@@ -6,7 +6,7 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/template/template.xhtml">
-	<ui:define name="subtitle">All Job Orders</ui:define>
+	<ui:define name="subtitle">Job Orders</ui:define>
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
@@ -24,7 +24,7 @@
 				<div class="container ">
 					<div class="row pt-3">
 						<div class="table-responsive">
-							<h:dataTable styleClass=" table table-striped table-bordered"
+							<h:dataTable styleClass=" table table-striped table-bordered table-datatable"
 								value="#{jobOrderBean.joborderlist}" var="j" >
 								<h:column>
 									<f:facet name="header">ID </f:facet>
@@ -57,23 +57,25 @@
 									#{ j.basic_salary }
 								</h:column>
 								<h:column>
-									<f:facet name="header">Total Employee</f:facet>
-									#{ j.total_employee }
+									<f:facet name="header">Entery Date</f:facet>
+									#{ j.entry_date }
 								</h:column>
 								
 								<h:column>
 								<f:facet name="header">Action</f:facet>
-									<h:link value="Edit" outcome="/views/add-joborder" styleClass="btn btn-primary" >
+									<h:link outcome="/views/add-joborder" styleClass="btn btn-primary" >
 										<f:param name="joborderid" value="#{j.id}"></f:param>
+										<i class="fas fa-edit"></i>
 									</h:link>
 								</h:column>
-								<h:column>
+								<!-- <h:column>
 									<h:form>
-										<h:commandLink action="#{jobOrderBean.removeJobOrder(j.id)}"
-											value="remove"  styleClass="btn btn-danger" >
+										<h:commandLink action="#{jobOrderBean.removeJobOrder(j.id)}" onclick=" if (! confirm('Do you want to delete?')) return false"
+											styleClass="btn btn-danger" >
+											<i class="fas fa-trash"></i>
 										</h:commandLink>
 									</h:form>
-								</h:column>
+								</h:column> -->
 							</h:dataTable>
 
 						</div>

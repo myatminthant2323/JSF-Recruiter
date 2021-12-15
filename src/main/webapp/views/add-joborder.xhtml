@@ -20,7 +20,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between px-4">
-									<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-suitcase mr-1"></i>#{jobOrderBean.joborder.id
+									<h6 class="m-0 font-weight-bold text-primary">#{jobOrderBean.joborder.id
 										!= 0 ? 'Edit Job Order' : 'Add New Job Order'}</h6>
 
 								</div>
@@ -34,7 +34,10 @@
 													<h:outputLabel value="Job Position" />
 													<h:inputText value="#{jobOrderBean.joborder.job_position}"
 														styleClass="form-control" p:required="required"
-														p:placeholder="" />
+														p:placeholder=""  validatorMessage="Please enter at most 25 characters!"  id="job_position">
+														<f:validateLength maximum="25"></f:validateLength>
+													</h:inputText>
+													<h:message for="job_position" styleClass="text-danger"/>
 												</div>
 
 
@@ -44,14 +47,20 @@
 													<h:outputLabel value="Basic Salary" />
 													<h:inputText value="#{jobOrderBean.joborder.basic_salary}"
 														styleClass="form-control" p:required="required"
-														p:placeholder="Basic Salary" p:type="number" />
+														p:placeholder="Basic Salary" p:type="number"  id="salary"  validatorMessage="Please enter at most 15 characters!"  p:min="1" p:max="10000000">
+														<f:validateLength maximum="15"></f:validateLength>
+													</h:inputText>
+													<h:message for="salary" styleClass="text-danger"/>
 												</div>
 												<div class="form-group ">
 													<h:outputLabel value="Total Employee" />
 													<h:inputText
 														value="#{jobOrderBean.joborder.total_employee}"
 														styleClass="form-control" p:required="required"
-														p:placeholder="Total Employee" p:type="number" />
+														p:placeholder="Total Employee" p:type="number" validatorMessage="Please enter at most 15 characters!"  id="total_emp" p:min="1" p:max="500">
+														<f:validateLength maximum="15"></f:validateLength>
+													</h:inputText>
+													<h:message for="total_emp" styleClass="text-danger"/>
 												</div>
 												<div class="form-group">
 													<h:outputLabel value="Company" />
@@ -74,10 +83,14 @@
 												</div>
 												<div class="form-group ">
 													<h:outputLabel value="Job Description" />
-													<h:inputTextarea
+													<!-- <h:inputTextarea
 														value="#{jobOrderBean.joborder.job_description}"
 														styleClass="form-control" p:required="required"
-														p:placeholder=""  id="summernote"/>
+														p:placeholder="" /> -->
+													<h:inputTextarea p:id="summernote" value="#{jobOrderBean.joborder.job_description}" styleClass="form-control" required="true" p:placeholder="Job Description" id="description"  validatorMessage="Please enter description">
+														<f:validateRequired />
+													</h:inputTextarea>
+													<h:message for="description" styleClass="text-danger"/>
 												</div>
 												<div class="form-group">
 													<div class="form-check">

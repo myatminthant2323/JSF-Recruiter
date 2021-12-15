@@ -3,11 +3,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/template/template.xhtml">
 	<ui:define name="title">Recruiter</ui:define>
-	<ui:define name="subtitle">#{recruiterBean.recruiter.id != 0 ? 'Edit Recruiter' : 'Add New Recruiter'}</ui:define>
+	<ui:define name="subtitle">
+	<h:outputText value="#{recruiterBean.recruiter.id != 0 ? 'Edit Recruiter' : 'Add New Recruiter'}"  rendered="#{recruiterBean.recruiter != null}"/>
+	</ui:define>
 	<ui:define name="main_content">
 		<div class="container">
 			<div class="row">
@@ -16,15 +19,16 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between px-4">
-							<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user-cog mr-1"></i>#{recruiterBean.recruiter.id
-								!= 0 ? 'Edit Recruiter' : 'Add New Recruiter'}</h6>
-
+							<h6 class="m-0 font-weight-bold text-primary d-inline"><i class="fas fa-user-cog mr-1"></i>
+							<h:outputText value="#{recruiterBean.recruiter.id != 0 ? 'Edit Recruiter' : 'Add New Recruiter'}"  rendered="#{recruiterBean.recruiter != null}"/>
+							<h:outputText value="Unauthorized"  rendered="#{recruiterBean.recruiter == null}"/></h6>
+							<span class="float-right" style="font-size: 16px;"><h:link value="" outcome="/views/recruiters"><i class="fas fa-arrow-circle-left"></i></h:link></span>
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-12 px-4">
-									<h:form styleClass="form">
+									<h:form styleClass="form" id="email_unique_constraint" rendered="#{recruiterBean.recruiter != null}">
 										<h:inputHidden value="#{recruiterBean.recruiter.id}" />
 										<div class="form-group">
 											<h:outputLabel value="Name" />
@@ -38,22 +42,34 @@
 												styleClass="form-control" p:placeholder="Enter Phone"
 												p:required="required" />
 										</div>
-										<div class="form-group">
-											<h:outputLabel value="Email" />
-											<h:inputText value="#{recruiterBean.recruiter.email}"
-												styleClass="form-control" p:placeholder="Enter Email"
-												p:type="email" />
-										</div>
-										<div class="form-group">
-											<h:outputLabel value="Password" />
-											<h:inputSecret value="#{recruiterBean.recruiter.password}"
-												p:placeholder="Enter Password" styleClass="form-control" />
-										</div>
-
+											<c:if test="#{loginBean.loginUser.level == 'Admin'}">
+												<div class="form-group">
+													<h:outputLabel value="Access Level" />
+													<h:selectOneMenu value="#{recruiterBean.recruiter.level}" styleClass="form-control">
+														<f:selectItem itemValue = "Admin" itemLabel = "Admin" /> 
+		   												<f:selectItem itemValue = "Staff" itemLabel = "Staff" /> 
+													</h:selectOneMenu>
+												</div>
+												<div class="form-group">
+													<h:outputLabel value="Email" />
+													<h:inputText value="#{recruiterBean.recruiter.email}"
+														styleClass="form-control" p:placeholder="Enter Email"
+														p:type="email" />
+													<h:message  for="email_unique_constraint"  styleClass="text-danger" />
+													<span class="text-danger">${error_message != null ? error_message : ""}</span>
+												</div>
+												</c:if>
+												<div class="form-group">
+													<h:outputLabel value="Password" />
+													<h:inputText value="#{recruiterBean.recruiter.password}"
+														p:placeholder="Enter Password" styleClass="form-control"  p:required="required"/>
+												</div>
+											
 										<h:commandButton action="#{recruiterBean.saveRecruiter()}"
 											value="#{recruiterBean.recruiter.id != 0 ? 'Update' : 'Add'}"
 											styleClass="btn btn-primary mr-2 mt-4" />
 									</h:form>
+									<h:outputText value="You are unauthorized to access the current page!"  rendered="#{recruiterBean.recruiter == null}" styleClass="text-danger"/>
 								</div>
 
 							</div>

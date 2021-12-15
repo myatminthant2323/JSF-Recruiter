@@ -9,193 +9,234 @@
 <ui:define name="subtitle">Job Order Detail</ui:define>
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
-				<div class="container mt-5">
-					<!-- Content Row -->
-					<div class="row">
+		<div class="container mt-3">
 
-						<div class="col-xl-7 col-lg-7">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-suitcase mr-1"></i>Job Order Detail</h6>
+			<div class="row">
+				<div class="col-2 offset-10 mb-3">
+					<span class="float-right" style="font-size: 16px;"><h:link
+							value="" outcome="/views/joborders">
+							<i class="fas fa-arrow-circle-left"></i>
+							<span style="text-decoration: none"> Back</span>
+						</h:link></span>
+				</div>
 
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-6">
-											<p>Job Position:</p>
-											<p>Basic Salary:</p>
-											<p>No of Employee:</p>
-											<p>Company:</p>
-											<p>Job Location:</p>
-										</div>
-										<div class="col-md-6">
-											<p>#{jobOrderBean.joborder.job_position != null ? jobOrderBean.joborder.job_position : "-"} </p>
-											<p>#{jobOrderBean.joborder.basic_salary != null ? jobOrderBean.joborder.basic_salary : "-"}  </p>
-											<p>#{jobOrderBean.joborder.total_employee != null ?jobOrderBean.joborder.total_employee : "-"}  </p>
-											<p>#{jobOrderBean.joborder.company.name != null ? jobOrderBean.joborder.company.name : "-"}  </p>
-											<p>#{jobOrderBean.joborder.job_location.name != null ? jobOrderBean.joborder.job_location.name : "-"}  </p>
-											
-											
-										</div>
-									</div>
-								</div>
-							</div>
+			</div>
+			<!-- Content Row -->
+			<div class="row">
+
+				<div class="col-xl-7 col-lg-7">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary d-inline">
+								<i class="fas fa-suitcase mr-1"></i>Job Order Detail
+							</h6>
+							<h:link value="" outcome="/views/add-joborder"
+								styleClass="float-right" style="font-size:17px;">
+								<f:param name="joborderid" value="#{jobOrderBean.joborder.id}"></f:param>
+								<i class="fas fa-edit"></i>
+							</h:link>
 						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<p>Job Position:</p>
+									<p>Basic Salary:</p>
+									<p>No of Employee:</p>
+									<p>Company:</p>
+									<p>Job Location:</p>
+								</div>
+								<div class="col-md-6">
+									<p>#{jobOrderBean.joborder.job_position != null ?
+										jobOrderBean.joborder.job_position : "-"}</p>
+									<p>#{jobOrderBean.joborder.basic_salary != null ?
+										jobOrderBean.joborder.basic_salary : "-"}</p>
+									<p>#{jobOrderBean.joborder.total_employee != null
+										?jobOrderBean.joborder.total_employee : "-"}</p>
+									<p>#{jobOrderBean.joborder.company.name != null ?
+										jobOrderBean.joborder.company.name : "-"}</p>
+									<p>#{jobOrderBean.joborder.job_location.name != null ?
+										jobOrderBean.joborder.job_location.name : "-"}</p>
 
-						<div class="col-xl-5 col-lg-5">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-info-circle mr-1"></i>Other
-										Information</h6>
 
 								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-6">
-											<p>Entry By:</p>
-											<p>Entry Date:</p>
-											<p>Modified By:</p>
-											<p>Modified Date:</p>
-										</div>
-										<div class="col-md-6">
-											<p>#{jobOrderBean.joborder.entryBy.name != null ? jobOrderBean.joborder.entryBy.name : "-"}</p>
-											<p>#{jobOrderBean.joborder.entry_date != null ? jobOrderBean.joborder.entry_date : "-"}</p>
-											<p>#{jobOrderBean.joborder.modifyBy.name != null ? jobOrderBean.joborder.modifyBy.name : "-"}</p>
-											<p>#{jobOrderBean.joborder.modify_date != null ? jobOrderBean.joborder.modify_date : "-"}</p>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-check ml-4">
-								<div class="form-check">
-													<h:selectBooleanCheckbox value = "#{jobOrderBean.joborder.is_active}" id = "isactive"  styleClass="form-check-input" p:readonly="readonly"/> 
-													Is Active?
-												</div>
 							</div>
 						</div>
 					</div>
+				</div>
+
+				<div class="col-xl-5 col-lg-5">
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">
+								<i class="fas fa-info-circle mr-1"></i>Other Information
+							</h6>
+
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<p>Entry By:</p>
+									<p>Entry Date:</p>
+									<p>Modified By:</p>
+									<p>Modified Date:</p>
+								</div>
+								<div class="col-md-6">
+									<p>#{jobOrderBean.joborder.entryBy.name != null ?
+										jobOrderBean.joborder.entryBy.name : "-"}</p>
+									<p>#{jobOrderBean.joborder.entry_date != null ?
+										jobOrderBean.joborder.entry_date : "-"}</p>
+									<p>#{jobOrderBean.joborder.modifyBy.name != null ?
+										jobOrderBean.joborder.modifyBy.name : "-"}</p>
+									<p>#{jobOrderBean.joborder.modify_date != null ?
+										jobOrderBean.joborder.modify_date : "-"}</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-check ml-4">
+						<div class="form-check">
+							<h:selectBooleanCheckbox
+								value="#{jobOrderBean.joborder.is_active}" id="isactive"
+								styleClass="form-check-input" p:readonly="readonly" />
+							Is Active?
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="row pt-3">
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-suitcase mr-1"></i>Job
-								Description</h6>
+							<h6 class="m-0 font-weight-bold text-primary">
+								<i class="fas fa-suitcase mr-1"></i>Job Description
+							</h6>
 
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-								<div class="container-fluid px-0">
-								#{jobOrderBean.joborder.job_description != null ?
-												jobOrderBean.joborder.job_description : "-"}
-									<!-- <div class="row pt-3">
-										<div class="col-md-12">
-											
-										</div>
-									</div> -->
-								</div>
+							<div class="container-fluid px-0">
+							<h:outputText escape="false" value="#{jobOrderBean.joborder.job_description != null ?
+								jobOrderBean.joborder.job_description : '-'}"/>
+								
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		
+
 			<div class="row pt-4">
 				<div class="col-xl-12 col-lg-12">
-				<div class="card shadow mb-4">
-					<!-- Card Header - Dropdown -->
-					<div
-						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-link mr-1"></i>Candidate Pipeline</h6>
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">
+								<i class="fas fa-link mr-1"></i>Candidate Pipeline
+							</h6>
 
-					</div>
-					<!-- Card Body -->
-					<div class="card-body">
-						<div class="row">
-							<div class="container ">
-								<div class="row pt-3">
-									<div class="table-responsive">
-										<h:dataTable id="table" styleClass=" table table-striped table-bordered"
-											value="#{jobPipelineBean.joborder_jobPipelineList}" var="j" >
-											<h:column>
-												<f:facet name="header">ID </f:facet>
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+
+							<div class="row">
+								<div class="container ">
+									<div class="row pt-3">
+
+										<div class="table-responsive">
+											<h:dataTable id="table"
+												styleClass=" table table-striped table-bordered table-datatable"
+												value="#{jobPipelineBean.joborder_jobPipelineList}" var="j">
+												<h:column>
+													<f:facet name="header">ID </f:facet>
 												#{j.id }
 											</h:column>
-											<h:column>
-												<f:facet name="header">Name</f:facet>
-												<h:link value="#{ j.candidate.name }"
-													outcome="/views/detail_candidate">
-													<f:param name="candidateid" value="#{j.candidate.id}"></f:param>
-												</h:link>
+												<h:column>
+													<f:facet name="header">Name</f:facet>
+													<h:link value="#{ j.candidate.name }"
+														outcome="/views/detail_candidate">
+														<f:param name="candidateid" value="#{j.candidate.id}"></f:param>
+													</h:link>
 
+												</h:column>
+
+												<h:column>
+													<f:facet name="header">Added</f:facet>
+												#{ j.entry_date.toLocalDate() }
 											</h:column>
-											
-											<h:column>
-												<f:facet name="header">Added</f:facet>
-												#{ j.entry_date }
-											</h:column>
-											<h:column>
-												<f:facet name="header">Entry By</f:facet>
+												<h:column>
+													<f:facet name="header">Entry By</f:facet>
 												#{ j.entryBy.name }
 											</h:column>
-											<h:column>
-												<f:facet name="header">Status</f:facet>
+												<h:column>
+													<f:facet name="header">Status</f:facet>
 												#{ j.candidatejoborderstatus.short_description }
 											</h:column>
-											<h:column>
-												<f:facet name="header">Last Activity</f:facet>
+												<h:column>
+													<f:facet name="header">Last Activity</f:facet>
 												---
 											</h:column>
-											<h:column>
-												<f:facet name="header">Action</f:facet>
-												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_pipeline">
-													<i class="fas fa-user-cog"></i>
-												</button>
-												<!-- <h:link value="" outcome=""  styleClass="btn btn-primary"  id="edit_jobpipeline">
-													<f:param name="jobpipelineid" value="#{j.id}"></f:param>
-													<i class="fas fa-edit"></i>
-												</h:link> -->
-											</h:column>
-											<h:column>
-												<h:form>
-													<h:commandLink
-														action="#{jobPipelineBean.removeJobPipeline(j.id)}"
-														value=""  styleClass="btn btn-danger">
-														<i class="fas fa-user-minus"></i>
-													</h:commandLink>
-												</h:form>
-											</h:column>
-										</h:dataTable>
+												<h:column>
+													<f:facet name="header">Action</f:facet>
+													<h:form id="editBtnFrom" rendered="#{ j.candidatejoborderstatus.id != 900 }">
+														<h:commandLink id="btnEdit"
+															onclick="$('.myModal').modal(true);"
+															styleClass="btn btn-primary btnEdit" >
+															<i class="fas fa-user-cog"></i>
+															<f:ajax listener="#{jobPipelineBean.findById(j.id)}"
+																render="editForm\\:select_status editForm\\:hidden_status"
+																execute="@this" />
 
-									</div>
-									<h:link value="" outcome="/views/add-job-pipeline"  styleClass="pt-3">
-										<f:param name="joborderid" value="#{jobOrderBean.joborder.id}"></f:param><i class="fas fa-user-plus mr-1"></i>Add Candidate To This Job Order Pipeline
+														</h:commandLink>
+													</h:form>
+													<h:outputLabel rendered="#{ j.candidatejoborderstatus.id == 900 }" value="---"></h:outputLabel>
+												</h:column>
+												<h:column>
+													<h:form rendered="#{ j.candidatejoborderstatus.id != 900 }">
+														<h:commandLink
+															action="#{jobPipelineBean.removeJobPipeline(j.id)}" onclick=" if (! confirm('Are you sure to remove this candidate?')) return false"
+															value="" styleClass="btn btn-danger">
+															<i class="fas fa-user-minus"></i>
+														</h:commandLink>
+													</h:form>
+													<h:outputLabel rendered="#{ j.candidatejoborderstatus.id == 900 }" value="---"></h:outputLabel>
+												</h:column>
+											</h:dataTable>
+
+										</div>
+
+										<h:link value="" outcome="/views/add-job-pipeline"
+											styleClass="pt-3">
+											<f:param name="joborderid"
+												value="#{jobOrderBean.joborder.id}"></f:param>
+											<i class="fas fa-user-plus mr-1"></i>Add Candidate To This Job Order Pipeline
 									</h:link>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			</div>
 
 		</div>
-				<!-- /.container-fluid -->
+		<!-- /.container-fluid -->
 		
 	</ui:define>
 	<ui:define name="modals">
-		<h:form></h:form>
-		<div class="modal fade" id="edit_pipeline" role="dialog">
+		<div class="modal fade myModal" id="edit_pipeline" role="dialog">
 		    <div class="modal-dialog">
 		    
 		      <!-- Modal content-->
+		      <h:form id="editForm">
 		      <div class="modal-content">
 		        <div class="modal-header">
 		        <h5 class="modal-title ml-3" style="color: black; font-weight: 600;">Job Orders: Log Activity</h5>
@@ -203,53 +244,80 @@
 		          
 		        </div>
 		        <div class="modal-body">
+		        
 		        <div class="container">
+		        
 		         <div class="row mt-2">
 					<div class="col-md-6">
 						<p>Job Position:</p>
 						<p>Status:</p>
 						<p class="" style="margin-top: 60px;" id="schedule_event_label">Schedule Event:</p>
+						<p class="" style="margin-top: 60px; display:none;" id="fees_label" >Fees and Salary:</p>
 					</div>
 					<div class="col-md-6">
-						<p>#{jobOrderBean.joborder.job_position != null ? jobOrderBean.joborder.job_position : "-"} </p>
+					<h:inputHidden value="#{jobPipelineBean.edit_jobpipeline.candidatejoborderstatus.id}" 	id="hidden_status"/>
+					
+						<p>#{jobPipelineBean.joborder.job_position != null ? jobPipelineBean.joborder.job_position : "-"} </p>
 						<p>
-								<input type="checkbox" class=""  id="check_status" />
+						
+								<h:selectBooleanCheckbox  id="check_status"/>
 								<label class="form-check-label ml-1"  for="exampleCheck1">Change Status</label>
-								<h:selectOneMenu  value="#{jobPipelineBean.jobpipeline.candidatejoborderstatus}"  styleClass="form-control mt-2"  id="select_status"  p:disabled="disabled">
+								<h:selectOneMenu  value="#{jobPipelineBean.edit_jobpipeline.candidatejoborderstatus}"  styleClass="form-control mt-2"  id="select_status"  p:disabled="disabled" onchange="changeStatus(this)">
 										<f:selectItems value="#{candidateJobOrderStatusBean.joborderStatusList}" itemValue="#{cjs}" var="cjs" itemLabel="#{cjs.short_description}" ></f:selectItems>
 											<f:converter binding="#{candidateJobOrderStatusConverter}"></f:converter>
 								</h:selectOneMenu>
 						</p>
 						<div id="schedule_event">
-								<input type="checkbox" class=""   id="check_schedule" disabled="disabled"/>
-								<label class="form-check-label ml-1"  for="exampleCheck1">Schedule Event</label>
-								<div id="interview_related"  style="display: none">
+								<h:selectBooleanCheckbox  id="check_schedule" disabled="true"/>
+								<label class="form-check-label ml-1 check_schedule_label"  for="exampleCheck1" id="check_schedule_label" >Schedule Event</label>
+								<div id="interview_related"  style="display:none;">
 									<label class="mt-2 mb-0" >Interview Type</label>
-									<h:selectOneMenu styleClass="form-control mt-1" id="interview_type"  >
-											<f:selectItem itemValue="Online" itemLabel="Online"></f:selectItem>
-											<f:selectItem itemValue="Phone" itemLabel="Phone"></f:selectItem>
-											<f:selectItem itemValue="Personal" itemLabel="Personal"></f:selectItem>
+									<h:selectOneMenu value="#{interviewRecordBean.interviewRecord.interviewType}" styleClass="form-control mt-2"  id="interview_type">
+										<f:selectItems value="#{interviewTypeBean.interviewTypeList}" itemValue="#{it}" var="it" itemLabel="#{it.description}" ></f:selectItems>
+											<f:converter binding="#{interviewTypeConverter}"></f:converter>
 									</h:selectOneMenu>
 									<label class="mt-2 mb-0" >Interview Date</label>
-									<h:inputText value="" styleClass="form-control mr-2 mt-1"  p:required="required" p:type="date" id="interview_date" >
-										<f:convertDateTime type="localDate" pattern="MM/dd/yyyy"/>
+									<h:inputText value="#{interviewRecordBean.interviewRecord.interview_date}" styleClass="form-control mr-2 mt-1"  p:required="required" p:type="date" id="interview_date" >
+										<f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+									</h:inputText>
+									<label class="mt-2 mb-0" >Interview Time</label>
+									<h:inputText value="#{interviewRecordBean.interviewRecord.interview_time}"  styleClass="form-control mr-2 mt-1"  p:required="required" p:type="time" id="interview_time" >
+										<f:convertDateTime type="localTime" pattern="HH:mm" /> 
 									</h:inputText>
 									<label class="mt-2 mb-0" >Time Interval <small>(Mins)</small></label>
-									<h:inputText value="" styleClass="form-control mr-2 mt-1"  p:required="required" p:type="number" id="interval"  />
+									<h:inputText value="#{interviewRecordBean.interviewRecord.interview_interval}" styleClass="form-control mr-2 mt-1"  p:required="required" p:type="number" id="interval"  />
 								</div>
 						</div>
-						
+						<div id="fees_div" style="display:none;">
+								<h:selectBooleanCheckbox  id="fees_check" disabled="true"/>
+								<label class="form-check-label ml-1"  for="exampleCheck1" id="fees_check_label">Fees and Salary</label>
+								<div id="fees_related"  style="display:none;">
+									<label class="mt-2 mb-0" >Final Salary</label>
+									<h:inputText value="#{feesRecordBean.feesRecord.realsalary}"  styleClass="form-control mr-2 mt-1"  p:required="required" p:type="number" id="final_salary" >
+									</h:inputText>
+									<label class="mt-2 mb-0" >Allowance</label>
+									<h:inputText value="#{feesRecordBean.feesRecord.allowance}" styleClass="form-control mr-2 mt-1"  p:type="number" id="allowance" >
+									</h:inputText>
+									<label class="mt-2 mb-0" >Agent Fees</label>
+									<h:inputText value="#{feesRecordBean.feesRecord.agentfees}" styleClass="form-control mr-2 mt-1"  p:required="required" p:type="number" id="agent_fees" >
+									</h:inputText>
+								</div>
+						</div>
 													
 					</div>
 				</div>
+				
 		          </div>
+		          
 		        </div>
 		        <div class="modal-footer">
-		        <button type="submit" class="btn btn-primary" id="btnSave" >Save</button>
+		        <h:commandButton action="#{jobPipelineBean.updateJobPipline()}"
+														value="Save"
+														styleClass="btn btn-primary"  id="btnSave"/>
 		          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 		        </div>
 		      </div>
-		      
+		      </h:form>
 		    </div>
   </div>
 
@@ -258,74 +326,151 @@
 	<ui:define name="custom_js">
 		<script type="text/javascript">
 			 	$(document).ready(function() {
-			 		
 			 		/* statusValidate(); */
-
+			 		
 				 	// if checkbox is not checked, disable selectbox
-				 	var currentStatusCodeForCheckStatus = $('#select_status').val();
-			 		$('#check_status').on('change', function() {
+				 	$('.btnEdit').on('click' , function() {
+						$('#editForm\\:check_status').prop('checked',false);
+						$('#editForm\\:check_schedule').prop('checked',false);
+						$('#editForm\\:check_schedule').prop('disabled',true);
+						$('#interview_related').hide();
+						scheduleItemClear();
+
+						$('#editForm\\:fees_check').prop('checked',false);
+						$('#editForm\\:fees_check').prop('disabled',true);
+						$('#fees_related').hide();
+						feesItemClear();
+				 	});
+				 	
+				 	$('#editForm\\:check_status').on('change' , function() {
+					 		if(this.checked){
+					 			 $('#editForm\\:select_status').prop('disabled',false);
+					 			var currentStatusCode = $('#editForm\\:hidden_status').val();
+					 			if((currentStatusCode == '500') || (currentStatusCode == '600') || (currentStatusCode == '700' )){
+					 				
+					 				$('#fees_div').hide();
+					 				feesItemClear();
+					 				$('#editForm\\:check_schedule').prop('disabled',false);
+					 				$('#editForm\\:check_schedule').prop('checked',false);
+					 				$('#fees_related').hide();
+					 				$('#schedule_event_label').show();
+						 			$('#schedule_event').show();
+						 			
+					 			}else if((currentStatusCode == '800') || (currentStatusCode == '900')){
+					 				$('#schedule_event').hide();
+							 		scheduleItemClear();
+							 		
+							 		$('#editForm\\:fees_check').prop('disabled',false);
+							 		$('#editForm\\:fees_check').prop('checked',false);
+							 		
+							 		$('#editForm\\:check_schedule').hide();
+					 				$('#schedule_event_label').hide();
+							 		$('#fees_label').show();
+							 		$('#fees_div').show();
+							 		$('#editForm\\:fees_check').show();
+							 		$('#fees_check_label').show();
+							 		
+							 	}
+						 	}else{
+							 	$("#editForm\\:select_status").val($('#editForm\\:hidden_status').val());
+						 		$('#editForm\\:select_status').prop('disabled',true);
+						 		scheduleItemClear();
+					 			/* statusValidate(); */
+						 		$('#editForm\\:check_schedule').prop('checked',false);
+						 		$('#interview_related').hide();
+						 		$('#editForm\\:check_schedule').prop('disabled',true);
+
+						 		$('#editForm\\:fees_check').prop('checked',false);
+						 		$('#fees_related').hide();
+						 		$('#editForm\\:fees_check').prop('disabled',true);
+							}
+				 		   
+				 		});
+
+
+
+				 	
+				 	$('#editForm\\:fees_check').on('change', function() {
 				 		if(this.checked){
-				 			 $('#select_status').prop('disabled',false);
+				 			 feesItemClear();
+				 			$('#fees_related').show();
 					 	}else{
-						 	$("#select_status").val(currentStatusCodeForCheckStatus);
-					 		$('#select_status').prop('disabled','disabled');
-					 		scheduleItemClear();
-				 			/* statusValidate(); */
-					 		$('#check_schedule').prop('checked',false);
+					 		 scheduleItemClear();
+					 		 feesItemClear();
 					 		$('#interview_related').hide();
-					 		$('#check_schedule').prop('disabled','disabled');
+					 		$('#fees_related').hide();
 						}
 			 		   
 			 		});
-
-			 		$('#select_status').on('change', function() {
-			 			scheduleItemClear();
-				 		var currentStatusCode = $(this).val();
-				 		if((currentStatusCode == '500') || (currentStatusCode == '600') || (currentStatusCode == '700' )){
-				 			$('#schedule_event_label').show();
-				 			$('#schedule_event').show();
-				 			$('#check_schedule').prop('disabled',false);
-					 	}else{
-					 		scheduleItemClear();
-					 		/* $('#schedule_event_label').hide();
-					 		$('#schedule_event').hide(); */
-					 		$('#check_schedule').prop('checked',false);
-					 		$('#interview_related').hide();
-					 		$('#check_schedule').prop('disabled','disabled');
-						}
-			 		   
-			 		});
-
 			 		
 
-			 		$('#check_schedule').on('change', function() {
+			 		$('#editForm\\:check_schedule').on('change', function() {
 				 		if(this.checked){
+				 			scheduleItemClear();
 				 			$('#interview_related').show();
 					 	}else{
+					 		 scheduleItemClear();
 					 		$('#interview_related').hide();
 						}
 			 		   
 			 		});
 
-			 		$('#btnSave').on('click', function() {
-			 			var currentStatusCode = $('#select_status').val();
+			 		$('#editForm\\:btnSave').on('click', function() {
+			 			var currentStatusCode = $('#editForm\\:select_status').val();
 			 			if((currentStatusCode == '500') || (currentStatusCode == '600') || (currentStatusCode == '700' )){
-			 				 if($('#interview_date').val() == ""){ 
-			 					 $('#interview_date').prop("required",true);
-			 					 $('#interval').prop("required",true);
+			 				 if($('#editForm\\:interview_date').val() == ""){
+			 					 $('#editForm\\:interview_date').prop("required",true);
+			 					 $('#editForm\\:interview_time').prop("required",true);
+			 					 $('#editForm\\:interval').prop("required",true);
 			 					 swal({
-			 				          title: "Error Occurs!",
+			 				          title: "Please enter interview schedule !",
 			 				          text: "Please enter interview schedule !",
 			 				          icon: "error",
 			 				          button: "OK",
 			 				        });
 				 				/*  alert("Please enter interview schedule !"); */
-			 				 }
-			 			}
+			 				 
+			 				 }else{
+			 					if($('#editForm\\:interval').val() != ""){
+			 						$('#editForm\\:interview_date').prop("required",false);
+			 						$('#editForm\\:interview_time').prop("required",false);
+				 					$('#editForm\\:interval').prop("required",false);
+				 					$('#editForm\\:final_salary').prop("required",false);
+				 					 $('#editForm\\:agent_fees').prop("required",false);
+				 					$('#editForm\\:btnSave').submit();
+			 					}
+			 					
+						 	}
+			 			}else if((currentStatusCode == '800') || (currentStatusCode == '900')){
+		 					if($('#editForm\\:final_salary').val() == ""){
+			 					 $('#editForm\\:final_salary').prop("required",true);
+			 					 $('#editForm\\:agent_fees').prop("required",true);
+			 					 swal({
+			 				          title: "Please enter final salary!",
+			 				          text: "Please enter final salary !",
+			 				          icon: "error",
+			 				          button: "OK",
+			 				        });
+					 	}else if($('#editForm\\:agent_fees').val() != ""){
+					 		$('#editForm\\:interview_date').prop("required",false);
+	 						$('#editForm\\:interview_time').prop("required",false);
+		 					$('#editForm\\:interval').prop("required",false);
+					 		$('#editForm\\:final_salary').prop("required",false);
+		 					 $('#editForm\\:agent_fees').prop("required",false);
+		 					$('#editForm\\:btnSave').submit();
+	 					}
+						}else{
+			 				$('#editForm\\:interview_date').prop("required",false);
+			 				$('#editForm\\:interview_time').prop("required",false);
+		 					$('#editForm\\:interval').prop("required",false);
+		 					$('#editForm\\:final_salary').prop("required",false);
+		 					$('#editForm\\:agent_fees').prop("required",false);
+			 				$('#editForm\\:btnSave').submit();
+				 		}
 			 		});
 
 			 		function statusValidate() {
-			 			var currentStatusCodeForSchedule = $('#select_status').val();
+			 			var currentStatusCodeForSchedule = $('#editForm\\:select_status').val();
 				 		if((currentStatusCodeForSchedule == '500') || (currentStatusCodeForSchedule == '600') || (currentStatusCodeForSchedule == '700' )){
 				 			$('#schedule_event_label').show();
 				 			$('#schedule_event').show();
@@ -337,14 +482,73 @@
 						}
 			 		}
 
-			 		function scheduleItemClear() {
-			 			
-			 			$('#interview_type').val("Online");
-			 			 $('#interview_date').val("");
-			 			 $('#interval').val("");
-			 		}
-			 		 
+			 		
+				 	
 			 });
+
+			 	function scheduleItemClear() {
+		 			
+		 			$('#editForm\\:interview_type').val("1");
+		 			 $('#editForm\\:interview_date').val("");
+		 			 $('#editForm\\:interval').val("");
+		 		}
+
+				function feesItemClear() {
+		 			
+		 			$('#editForm\\:final_salary').val("");
+		 			 $('#editForm\\:allowance').val("");
+		 			 $('#editForm\\:agent_fees').val("");
+		 		}
+
+			 	function changeStatus(currentStatusCode) {
+		 			scheduleItemClear();
+			 		
+			 		if((currentStatusCode.value == '500') || (currentStatusCode.value == '600') || (currentStatusCode.value == '700' )){
+			 			feesItemClear();
+			 			$('#schedule_event_label').show();
+			 			$('#schedule_event').show();
+			 			$('#editForm\\:check_schedule').prop('disabled',false);
+			 			$('#editForm\\:check_schedule').prop('checked',false);
+			 			$('#editForm\\:check_schedule').show();
+			 			$('#check_schedule_label').show();
+			 			$('#fees_related').hide();
+			 			$('#fees_label').hide();
+			 			$('#fees_check_label').hide();
+			 			$('#editForm\\:fees_check').hide();
+				 		
+			 			
+				 	}else if((currentStatusCode.value == '800') || (currentStatusCode.value == '900')){
+					 	
+				 		scheduleItemClear();
+				 		$('#interview_related').hide();
+				 		$('#schedule_event_label').hide();
+				 		$('#editForm\\:check_schedule').hide();
+				 		$('#check_schedule_label').hide();
+				 		$('#fees_label').show();
+				 		$('#fees_div').show();
+				 		$('#editForm\\:fees_check').show();
+				 		$('#fees_check_label').show();
+				 		$('#editForm\\:fees_check').prop('disabled',false);
+				 		$('#editForm\\:fees_check').prop('checked',false);
+				 	}else{
+					 	
+				 		feesItemClear();
+				 		$('#editForm\\:fees_check').prop('checked',false);
+				 		$('#fees_related').hide();
+				 		$('#editForm\\:fees_check').prop('disabled',true);
+				 		
+				 		scheduleItemClear();
+				 		/* $('#schedule_event_label').hide();
+				 		$('#schedule_event').hide(); */
+				 		$('#editForm\\:check_schedule').prop('checked',false);
+				 		$('#interview_related').hide();
+				 		$('#editForm\\:check_schedule').prop('disabled',true);
+
+				 		
+					}
+			 		
+		 		   
+		 		}
  	</script>
 	</ui:define>
 </ui:composition>

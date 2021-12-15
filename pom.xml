@@ -8,6 +8,7 @@
   	<maven.compiler.source>11</maven.compiler.source>
   	<maven.compiler.target>11</maven.compiler.target>
   	<failOnMissingWebXml>false</failOnMissingWebXml>
+  	<poi.version>4.1.2</poi.version>
   </properties>
   <dependencies>
   	<dependency>
@@ -22,11 +23,6 @@
 	     <version>5.8.2</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.webjars/summernote -->
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>summernote</artifactId>
-    <version>0.8.9</version>
-</dependency>
 
 
   	<dependency>
@@ -34,6 +30,49 @@
   		<artifactId>hibernate-core</artifactId>
   		<version>5.4.21.Final</version>
   	</dependency>
+  	<!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20190722</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+<dependency>
+    <groupId>org.apache.lucene</groupId>
+    <artifactId>lucene-core</artifactId>
+    <version>8.7.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+<dependency>
+    <groupId>org.apache.pdfbox</groupId>
+    <artifactId>pdfbox</artifactId>
+    <version>2.0.21</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/fontbox -->
+<dependency>
+    <groupId>org.apache.pdfbox</groupId>
+    <artifactId>fontbox</artifactId>
+    <version>2.0.19</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-scratchpad</artifactId>
+    <version>4.1.2</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>${poi.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>${poi.version}</version>
+</dependency>
+<!-- Thanks for using https://jar-download.com -->
+
+
   </dependencies>
   <build>
   	<finalName>

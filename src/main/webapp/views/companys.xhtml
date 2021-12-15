@@ -6,7 +6,7 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/template/template.xhtml">
-	<ui:define name="subtitle">All Companies</ui:define>
+	<ui:define name="subtitle">Companies</ui:define>
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
@@ -24,7 +24,7 @@
 				<div class="container ">
 					<div class="row pt-3">
 						<div class="table-responsive">
-							<h:dataTable id="dataTable" styleClass=" table table-striped table-bordered" value="#{companyBean.companyList}" var="c" >
+							<h:dataTable id="dataTable" styleClass=" table table-striped table-bordered table-datatable" value="#{companyBean.companyList}" var="c" >
 								<h:column>
 									<f:facet name="header">ID </f:facet>
 									#{c.id }
@@ -54,19 +54,19 @@
 								</h:column>
 								<h:column>
 								<f:facet name="header">Action</f:facet>
-									<h:link value="Edit" outcome="/views/add-company" styleClass="btn btn-primary" >
+									<h:link value="" outcome="/views/add-company" styleClass="btn btn-primary" >
 										<f:param name="companyid" value="#{c.id}"></f:param>
 										<i class="fas fa-edit"></i>
 									</h:link>
 								</h:column>
-								<h:column>
+								<!-- <h:column>
 									<h:form>
-										<h:commandLink action="#{companyBean.removeCompany(c.id)}"
-											value="remove" styleClass="btn btn-danger"  >
+										<h:commandLink action="#{companyBean.removeCompany(c.id)}" onclick=" if (! confirm('Do you want to delete?')) return false"
+											value="" styleClass="btn btn-danger"  >
 											<i class="fas fa-trash"></i>
 										</h:commandLink>
 									</h:form>
-								</h:column>
+								</h:column> -->
 							</h:dataTable>
 
 						</div>

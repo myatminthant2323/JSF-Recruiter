@@ -17,7 +17,7 @@
 		<i class="fa fa-bars"></i>
 	</button>
 
-	<h2 style="color:black;" class="ml-1"><ui:insert name="subtitle"></ui:insert></h2>
+	<h4 style="color:black;" class="ml-3"><ui:insert name="subtitle"></ui:insert></h4>
 	
 	
 	<!-- Topbar Navbar -->
@@ -45,8 +45,12 @@
 					</div>
 				</form>
 			</div></li>
-
-		
+	<li class="nav-item">
+	<!-- <a class="nav-link text-dark" href="#{request.contextPath}/views/interviewCalender.xhtml" style="font-size:18px;"><i class="far fa-calendar-alt"></i></a> -->
+    	<h:link value="" outcome="/views/InterviewCalender" styleClass="nav-link text-dark"><i class="far fa-calendar-alt"></i></h:link>
+    	<!-- <h:outputLink styleClass="nav-link text-dark" value="interviewCalender.xhtml" style="font-size:18px;"><i class="far fa-calendar-alt"></i></h:outputLink> -->
+ 	 </li>
+			
 
 		<div class="topbar-divider d-none d-sm-block"></div>
 
@@ -66,14 +70,15 @@
 			<div
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="#"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-				</a> <a class="dropdown-item" href="#"> <i
-					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
-				</a> <a class="dropdown-item" href="#"> <i
+				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal"> 
+				<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+				</a>
+				<h:link value="" outcome="/views/change_password" styleClass="dropdown-item"><i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i><span>Change Password</span>
+					</h:link>
+					 <!-- <a class="dropdown-item" href="#"> <i
 					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity
 					Log
-				</a>
+				</a> -->
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> 
 				<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

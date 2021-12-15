@@ -4,18 +4,59 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-
+	
 <h:head>
-
+	
 	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="dataTables.bootstrap4.min.css"></h:outputStylesheet>
 	<h:outputStylesheet library="webjars" name="font-awesome/5.8.2/css/all.min-jsf.css" />
 	<h:outputStylesheet library="webjars" name="font-awesome/5.8.2/css/v4-shims.min-jsf.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css" />
+	<h:outputStylesheet library="css" name="morris.css"></h:outputStylesheet>
+	<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css"/> -->
 	<h:outputStylesheet library="css" name="all.min.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="fontawesome.min.css"></h:outputStylesheet>
-	<h:outputStylesheet library="css" name="summernote.min.css"></h:outputStylesheet>
+	<!-- <h:outputStylesheet library="css" name="summernote.min.css"></h:outputStylesheet> -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"></link>
 	<h:outputStylesheet library="css" name="sb-admin-2.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="custom.css"></h:outputStylesheet>
+	<style>
+		.interviews {
+			  height: 12px;
+			  width: 18px;
+			  display: inline-block;
+			  background-color: rgb(11, 98, 164);
+			}
+			.hires {
+			  height: 12px;
+			  width: 18px;
+			  display: inline-block;
+			  background-color: rgb(122, 146, 163);
+			  
+			  display: inline-block;
+			}
+		
+		.first {
+			  height: 12px;
+			  width: 16px;
+			  display: inline-block;
+			  background-color: #9062cc;
+			}
+			.second {
+			  height: 12px;
+			  width: 16px;
+			  display: inline-block;
+			  background-color: #73d1aa;
+			  
+			  display: inline-block;
+			}
+			.third {
+			  height: 12px;
+			  width: 16px;
+			  display: inline-block;
+			  background-color: #3788D8;
+			}
+	</style>
 	<title><ui:insert name="title">Name</ui:insert></title>
 
 </h:head>
@@ -69,8 +110,16 @@
 
   	<h:outputScript library="js" name="jquery.min.js"></h:outputScript>
 	<h:outputScript library="js" name="bootstrap.bundle.min.js"></h:outputScript>
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <h:outputScript library="js" name="morris.js"></h:outputScript>
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
+	<h:outputScript library="js" name="moment.min.js"></h:outputScript>
+	<h:outputScript library="js" name="calendar.js"></h:outputScript>
 	<h:outputScript library="js" name="fontawesome.min.js"></h:outputScript>
-	<h:outputScript library="js" name="summernote.min.js"></h:outputScript>
+	<!-- <h:outputScript library="js" name="summernote.min.js"></h:outputScript> -->
+	
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 	<h:outputScript library="js" name="jquery.easing.min.js"></h:outputScript>
 	<h:outputScript library="js" name="jquery.dataTables.min.js"></h:outputScript>
 	<h:outputScript library="js" name="dataTables.bootstrap4.min.js"></h:outputScript>
@@ -78,17 +127,30 @@
 	<h:outputScript library="js" name="chart-area-demo.js"></h:outputScript>
 	<h:outputScript library="js" name="chart-pie-demo.js"></h:outputScript>
 	<h:outputScript library="js" name="sweetalert.min.js"></h:outputScript>
-	<h:outputScript library="js" name="myjs.js"></h:outputScript>
+	
  	
  	<script type="text/javascript">
  	$(document).ready(function() {
- 		$('#edit_jobpipeline').on('click', function() {
- 		    $('#JobpipelineModal').show();
- 		});
- 		  $('.table').DataTable();
- 		 $('#summernote').summernote();
-
-
+ 		
+ 		
+ 		
+ 		 $('.table-datatable').DataTable();
+ 		 $('#summernote').summernote({
+ 	        placeholder: 'Job Description',
+ 	        tabsize: 2,
+ 	        height: 100,
+ 	        fontsize:'12',
+ 	        toolbar: [
+ 	          ['style', ['style']],
+ 	          ['font', ['bold', 'underline', 'clear']],
+ 	          ['fontsize', ['fontsize']],
+ 	          ['color', ['color']],
+ 	          ['para', ['ul', 'ol', 'paragraph']],
+ 	          ['table', ['table']],
+ 	          ['insert', ['link', 'picture', 'video']],
+ 	          ['view', ['fullscreen', 'codeview', 'help']]
+ 	        ]
+ 	      });
  		 
  		});
  	</script>

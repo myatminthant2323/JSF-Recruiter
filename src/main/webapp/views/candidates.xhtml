@@ -6,29 +6,51 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/template/template.xhtml">
-<ui:define name="subtitle">All Candidates</ui:define>
+<ui:define name="subtitle">Candidate</ui:define>
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
-
+		<h:form styleClass="form" id="search_form" >
+			<div class="row">
 			<!-- Page Heading -->
 			<div
-				class="d-sm-flex align-items-center justify-content-between mb-4">
+				class="d-sm-flex align-items-center justify-content-between mb-4 col-3">
 				<h:link value="" outcome="/views/add-candidate"
 					styleClass="btn btn-primary"><i class="fas fa-plus mr-1"></i>Add New Candidate</h:link>
-
+				
 			</div>
-
+			
+			<div class="row offset-4">
+			
+				<div class="form-group col-xs-3 mr-2 ml-5">
+					<h:selectOneMenu styleClass="form-control" value="#{candidateBean.search_type}">
+							<f:selectItem itemValue="Keyskill"  itemLabel="KeySkill"></f:selectItem>
+							<f:selectItem itemValue="CV_form"  itemLabel="CV_Form"></f:selectItem>
+					</h:selectOneMenu>
+				</div>
+				<div class="form-group col-xs-5 mr-2">
+					<h:inputText value="#{candidateBean.keyword}" styleClass="form-control" p:required="required" p:placeholder="Keywords" validatorMessage="Please enter no more than 200 characters!"  id="keywords">
+						<f:validateLength maximum="200"></f:validateLength>
+					</h:inputText>
+					<h:message for="search_form" styleClass="text-danger"/>
+				</div>
+				<div class="form-group col-xs-4">
+					<h:commandButton  action="#{candidateBean.searchByKeyword()}" value="Search" styleClass="btn btn-primary">
+														
+					</h:commandButton>
+				</div>
+				
+			</div>
+			
+	</div>
+	</h:form>
 			<!-- Content Row -->
 			<div class="row">
 				<div class="container ">
 					<div class="row pt-3">
-						<div class="table-responsive">
-							<h:dataTable  id="dataTable" styleClass=" table table-striped table-bordered" value="#{candidateBean.candidateList}" var="c" >
-								<h:column>
-									<f:facet name="header">ID</f:facet>
-									#{c.id }
-								</h:column>
+						<div class="table-responsive" >
+							<h:dataTable  id="dataTable" rendered="#{ candidateBean.candidateList != null }" styleClass=" table table-striped table-bordered table-datatable" value="#{candidateBean.candidateList}" var="c" >
+								
 								<h:column>
 									<f:facet name="header">Name</f:facet>
 									<h:link value="#{ c.name }" outcome="/views/detail_candidate">
@@ -62,23 +84,57 @@
 										<i class="fas fa-edit"></i>
 									</h:link>
 								</h:column>
-								<h:column>
-									<h:form>
-										<h:commandLink action="#{candidateBean.removeCandidate(c.id)}"
-											value=""   styleClass="btn btn-danger">
+								<!-- <h:column>
+									<h:form id="removeCandidateForm">
+									
+										 
+										
+										if (! confirm('Do you want to update?')) return false"
+										<h:commandLink action="#{candidateBean.removeCandidate(c.id)}"  onclick=" if (! confirm('Do you want to delete?')) return false" value=""   styleClass="btn btn-danger deleteCandidate" id="deleteCandidate">
 											<i class="fas fa-trash"></i>
 											</h:commandLink>
 									</h:form>
-								</h:column>
+								</h:column> -->
 							</h:dataTable>
-
+							<!-- <h:form rendered="#{ candidateBean.candidateList == null  and 'CV_form'.equals(candidateBean.search_type)}">
+								<h4 class="text-danger">Coming Soon</h4>
+							</h:form> -->
 						</div>
+						
 					</div>
 				</div>
 			</div>
 
 		</div>
 		<!-- /.container-fluid -->
+	</ui:define>
+	<ui:define name="custom_js">
+		<script type="text/javascript">
+		/* function showAlert() {
+			var valid = false;
+			swal({
+				  title: "Are you sure?",
+				  text: "Once deleted, you will not be able to recover this imaginary file!",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+					  valid = true;
+					  
+				  } else {
+				    swal("Your imaginary file is safe!");
+				    return valid;
+				  }
+				});
+			alert(valid);
+			return valid;
+ 		} */
+
+
+			 	
+ 	</script>
 	</ui:define>
 </ui:composition>
 </html>

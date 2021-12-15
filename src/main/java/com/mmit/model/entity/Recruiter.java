@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+import static javax.persistence.EnumType.STRING;
+import static javax.persistence.CascadeType.REMOVE;
 
 /**
  * Entity implementation class for Entity: Recruiter
@@ -21,33 +23,53 @@ public class Recruiter implements Serializable {
 	@Basic(optional = false)
 	private String phone;
 	@Basic(optional = false)
+	@Column(unique = true)
 	private String email ;
 	private String password;
 	
+	@Enumerated(STRING)
+	private AccessLevel level;
 	
-	@OneToMany(mappedBy = "entryBy")
+	@OneToMany(mappedBy = "entryBy", cascade = REMOVE)
 	private List<Company> company_entry;
 	
-	@OneToMany(mappedBy = "modifyBy")
+	@OneToMany(mappedBy = "modifyBy", cascade = REMOVE)
 	private List<Company> company_modify;
 	
-	@OneToMany(mappedBy = "entryBy")
+	@OneToMany(mappedBy = "entryBy", cascade = REMOVE)
 	private List<JobOrder> joborder_entry;
 	
-	@OneToMany(mappedBy = "modifyBy")
+	@OneToMany(mappedBy = "modifyBy", cascade = REMOVE)
 	private List<JobOrder> joborder_modify;
 	
-	@OneToMany(mappedBy = "entryBy")
+	@OneToMany(mappedBy = "entryBy", cascade = REMOVE)
 	private List<Candidate> candidate_entry;
 	
-	@OneToMany(mappedBy = "modifyBy")
+	@OneToMany(mappedBy = "modifyBy", cascade = REMOVE)
 	private List<JobPipeline> jobpipeline_modify;
 	
-	@OneToMany(mappedBy = "entryBy")
+	@OneToMany(mappedBy = "entryBy", cascade = REMOVE)
 	private List<JobPipeline> jobpipeline_entry;
 	
-	@OneToMany(mappedBy = "actionUserId")
+	@OneToMany(mappedBy = "actionUserId", cascade = REMOVE)
 	private List<Pipelinehistory> pipelinehistory;
+	
+	@OneToMany(mappedBy = "modifyBy", cascade = REMOVE)
+	private List<InterviewRecord> interviewRecord_modify;
+	
+	@OneToMany(mappedBy = "entryBy", cascade = REMOVE)
+	private List<InterviewRecord> interviewRecord_entry;
+	
+	@OneToMany(mappedBy = "modifyBy", cascade = REMOVE)
+	private List<InterviewRecord> feesRecord_modify;
+	
+	@OneToMany(mappedBy = "entryBy", cascade = REMOVE)
+	private List<InterviewRecord>feesRecord_entry;
+	
+	
+	public enum AccessLevel {
+		Admin, Staff
+	}
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -56,6 +78,18 @@ public class Recruiter implements Serializable {
 	}
 	
 	
+
+	public AccessLevel getLevel() {
+		return level;
+	}
+
+
+
+	public void setLevel(AccessLevel level) {
+		this.level = level;
+	}
+
+
 
 	public int getId() {
 		return id;

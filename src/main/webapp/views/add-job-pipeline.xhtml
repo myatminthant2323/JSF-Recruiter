@@ -9,7 +9,7 @@
 <ui:define name="subtitle">Candidate List</ui:define>
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
-		<div class="container-fluid">
+		<div class="container">
 		<h:form styleClass="d-inline">
 			<!-- Page Heading -->
 			<div
@@ -24,8 +24,14 @@
 					</h:link> | Company : <h:link value="#{jobPipelineBean.joborder.company.name}" outcome="/views/detail_company">
 											<f:param name="companyid" value="#{jobPipelineBean.joborder.company.id}"></f:param>
 									</h:link>)</span>
+									
+					
 				</div>
-				
+				<h:link value="" outcome="/views/detail_joborder"
+								styleClass="float-right" style="font-size:16px;">
+								<f:param name="joborderid" value="#{jobOrderBean.joborder.id}"></f:param>
+								<i class="fas fa-arrow-circle-left"></i><span style="text-decoration: none"> Back</span>
+							</h:link>
 			</div>
 
 			<!-- Content Row -->
@@ -35,7 +41,7 @@
 					
 						<div class="table-responsive">
 							
-							<h:dataTable  id="dataTable" styleClass=" table table-striped table-bordered" value="#{jobPipelineBean.candidate_jobPipelineList}" var="c">
+							<h:dataTable  id="dataTable" styleClass=" table table-striped table-bordered table-datatable" value="#{jobPipelineBean.candidate_jobPipelineList}" var="c">
 							
 								<h:column>
 									<f:facet name="header">ID</f:facet>

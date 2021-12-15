@@ -20,8 +20,8 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between px-4">
-									<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-building  mr-1"></i>#{companyBean.company.id != 0 ? 'Edit Company' : 'Add New Company'}</h6>
-
+									<h6 class="m-0 font-weight-bold text-primary d-inline"><i class="fa fa-building  mr-1"></i>#{companyBean.company.id != 0 ? 'Edit Company' : 'Add New Company'}</h6>
+									<span class="float-right" style="font-size: 16px;"><h:link value="" outcome="/views/companys"><i class="fas fa-arrow-circle-left"></i></h:link></span>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -33,43 +33,64 @@
 													<div class="form-group col-md-6 ">
 														<h:inputText value="#{companyBean.company.name}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Company Name" />
+															p:placeholder="Company Name"  validatorMessage="Please enter at most 25 charactors!"  id="name">
+														<f:validateLength maximum="25"></f:validateLength>
+														</h:inputText>
+														<h:message for="name" styleClass="text-danger"/>
 													</div>
 													<div class="form-group col-md-6">
 														<h:inputText value="#{companyBean.company.phone1}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Phone 1" p:type="number" />
+															p:placeholder="Phone 1" p:type="number"  validatorMessage="Please enter at most 15 charactors!"  id="phone1">
+														<f:validateLength maximum="15"></f:validateLength>
+														</h:inputText>
+														<h:message for="phone1" styleClass="text-danger"/>
 													</div>
 												</div>
 												<div class="form-row mb-4 mt-4">
 													<div class="form-group col-md-6 ">
 														<h:inputText value="#{companyBean.company.address}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Company Address" />
+															p:placeholder="Company Address" validatorMessage="Please enter at most 25 charactors!"  id="address">
+														<f:validateLength maximum="25"></f:validateLength>
+														</h:inputText>
+														<h:message for="address" styleClass="text-danger"/>
 													</div>
 													<div class="form-group col-md-6">
 														<h:inputText value="#{companyBean.company.phone2}"
-															styleClass="form-control" p:required="required"
-															p:placeholder="Phone 2" p:type="number" />
+															styleClass="form-control" 
+															p:placeholder="Phone 2" p:type="number" validatorMessage="Please enter at most 15 charactors!"  id="phone2">
+														<f:validateLength maximum="15"></f:validateLength>
+														</h:inputText>
+														<h:message for="phone2" styleClass="text-danger"/>
 													</div>
 												</div>
 												<div class="form-row mb-4 mt-4">
 													<div class="form-group col-md-6 ">
 														<h:inputText value="#{companyBean.company.website}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Website" />
+															p:placeholder="Website (eg: www.websitename.domain)" validatorMessage="Please enter at most 30 charactors!"  id="website">
+														<f:validateLength maximum="30"></f:validateLength>
+														</h:inputText>
+														<h:message for="website" styleClass="text-danger"/>
 													</div>
 													<div class="form-group col-md-6">
 														<h:inputText value="#{companyBean.company.ownerName}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Owner Name" />
+															p:placeholder="Owner Name" validatorMessage="Please enter at most 15 charactors!"  id="owner">
+														<f:validateLength maximum="15"></f:validateLength>
+														</h:inputText>
+														<h:message for="owner" styleClass="text-danger"/>
 													</div>
 												</div>
 												<div class="form-row mb-4 mt-4">
 													<div class="form-group col-md-6 ">
 														<h:inputText value="#{companyBean.company.email}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Company Email" p:type="email" />
+															p:placeholder="Company Email" p:type="email" validatorMessage="Please enter at most 25 charactors!"  id="email">
+														<f:validateLength maximum="25"></f:validateLength>
+														</h:inputText>
+														<h:message for="email" styleClass="text-danger"/>
 													</div>
 													<div class="form-group col-md-6">
 														<h:selectOneMenu value="#{companyBean.company.township}"
@@ -92,7 +113,10 @@
 													<div class="form-group col-md-6">
 														<h:inputTextarea value="#{companyBean.company.remark}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Remark" />
+															p:placeholder="Remark" validatorMessage="Please enter at most 250 charactors!"  id="remark">
+														<f:validateLength maximum="250"></f:validateLength>
+														</h:inputTextarea>
+														<h:message for="remark" styleClass="text-danger"/>
 													</div>
 												</div>
 

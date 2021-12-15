@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.REMOVE;
 
 /**
  * Entity implementation class for Entity: Candidate
@@ -12,7 +13,10 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Candidate.findAll",query="SELECT c FROM Candidate c")
-@NamedQuery(name="Candidate.getUndeployedCandidates",query="SELECT c FROM Candidate c WHERE c.id NOT IN ( select candidate.id from JobPipeline p where p.joborder.id = :joborderid)")
+@NamedQuery(name="Candidate.getUndeployedCandidates",query="SELECT c FROM Candidate c WHERE c.id NOT IN ( select candidate.id from JobPipeline p where p.joborder.id = :joborderid) AND c.is_active='yes'")
+
+
+
 /*
  * "SELECT new com.mmit.entity.dto.ItemCategory(i,i.category.name) FROM Item i";
  */
@@ -33,6 +37,7 @@ public class Candidate implements Serializable {
 	@Basic(optional = false)
 	private String key_skills;
 	@Basic(optional = false)
+	@Column(unique = true, nullable = false)
 	private String email;
 	private LocalDate entry_date;
 	@ManyToOne
@@ -40,6 +45,7 @@ public class Candidate implements Serializable {
 	private  Recruiter entryBy;
 	private String cv_form;
 	private String is_active;
+	private String remark;
 	@ManyToOne
 	@JoinColumn(name = "availiability_id", referencedColumnName = "id")
 	private AvailabilityType availiability;
@@ -47,7 +53,7 @@ public class Candidate implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "modifyBy", referencedColumnName = "id")
 	private Recruiter modifyBy;
-	@OneToMany(mappedBy = "candidate")
+	@OneToMany(mappedBy = "candidate", cascade = REMOVE)
 	private List<JobPipeline> jobpipeline;
 	
 	
@@ -171,6 +177,18 @@ public class Candidate implements Serializable {
 	public void setModifyBy(Recruiter modifyBy) {
 		this.modifyBy = modifyBy;
 	}
+	
+	
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+
 
 	private static final long serialVersionUID = 1L;
 

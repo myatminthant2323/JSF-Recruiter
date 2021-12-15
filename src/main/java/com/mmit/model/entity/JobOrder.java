@@ -5,10 +5,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.REMOVE;
 
 @Entity
 @NamedQuery(name="JobOrder.findbyCompany",query="SELECT j FROM JobOrder j WHERE j.company.id = :companyid")
 @NamedQuery(name="JobOrder.findAll",query="SELECT j FROM JobOrder j")
+@NamedQuery(name="JobOrder.getUndeployedJobOrders",query="SELECT j FROM JobOrder j WHERE j.id NOT IN ( SELECT joborder.id FROM JobPipeline p WHERE p.candidate.id = :candidateid) AND j.is_active = 'yes'")
+
 public class JobOrder implements Serializable {
 
 	@Id
@@ -17,6 +20,7 @@ public class JobOrder implements Serializable {
 	@Basic(optional = false)
 	private String  job_position;
 	@Basic(optional = false)
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String job_description;
 	@Basic(optional = false)
 	private int basic_salary;
@@ -45,7 +49,7 @@ public class JobOrder implements Serializable {
 	@JoinColumn(name = "job_location", referencedColumnName = "id")
 	private Township job_location;
 	
-	@OneToMany(mappedBy = "joborder")
+	@OneToMany(mappedBy = "joborder", cascade = REMOVE)
 	private List<JobPipeline> jobpipeline;
 	
 	private static final long serialVersionUID = 1L;

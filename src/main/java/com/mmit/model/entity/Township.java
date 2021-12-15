@@ -23,10 +23,10 @@ public class Township implements Serializable {
 	@OneToMany(mappedBy = "township", cascade = REMOVE)
 	private List<Company> company;
 	
-	@OneToMany(mappedBy = "job_location")
+	@OneToMany(mappedBy = "job_location", cascade = REMOVE)
 	private List<JobOrder> joborder;
 	
-	@OneToMany(mappedBy = "township")
+	@OneToMany(mappedBy = "township", cascade = REMOVE)
 	private List<Candidate> candidate;
 	private static final long serialVersionUID = 1L;
 
@@ -81,5 +81,6 @@ public class Township implements Serializable {
 		return true;
 	}
 
+	
    
 }

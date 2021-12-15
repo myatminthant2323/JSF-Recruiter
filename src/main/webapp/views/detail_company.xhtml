@@ -10,6 +10,12 @@
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
 		<div class="container">
+		<div class="row">
+			<div class="col-2 offset-10 mb-3">
+			<span class="float-right" style="font-size: 16px;"><h:link value="" outcome="/views/companys"><i class="fas fa-arrow-circle-left"></i><span style="text-decoration: none"> Back</span></h:link></span>
+			</div>
+			
+		</div>
 			<!-- Content Row -->
 			<div class="row">
 
@@ -18,9 +24,13 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-building  mr-1"></i>Company
+							<h6 class="m-0 font-weight-bold text-primary d-inline"><i class="fa fa-building  mr-1"></i>Company
 								Profile</h6>
-
+							<h:link value="" outcome="/views/add-company"
+								styleClass="float-right" style="font-size:17px;">
+								<f:param name="companyid" value="#{companyBean.company.id}"></f:param>
+								<i class="fas fa-edit"></i>
+							</h:link>
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
@@ -38,9 +48,9 @@
 								<div class="col-md-6">
 									<p>#{companyBean.company.name != null ?
 										companyBean.company.name : "-"}</p>
-									<p>#{companyBean.company.phone1 != null ?
+									<p>#{companyBean.company.phone1 != 0 ?
 										companyBean.company.phone1 : "-"}</p>
-									<p>#{companyBean.company.phone2 != null ?
+									<p>#{companyBean.company.phone2 != 0 ?
 										companyBean.company.phone2 : "-"}</p>
 									<p>#{companyBean.company.email != null ?
 										companyBean.company.email : "-"}</p>
@@ -118,7 +128,7 @@
 							<div class="container ">
 								<div class="row pt-3">
 									<div class="table-responsive">
-										<h:dataTable styleClass=" table table-striped table-bordered"
+										<h:dataTable styleClass=" table table-striped table-bordered table-datatable"
 											value="#{companyBean.company_joborderlist}" var="j" >
 											<h:column>
 												<f:facet name="header">ID </f:facet>

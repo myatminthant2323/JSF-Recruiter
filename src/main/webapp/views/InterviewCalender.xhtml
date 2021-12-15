@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/template.xhtml">
+<ui:define name="subtitle">Interview Schedule Calender</ui:define>
+	<ui:define name="main_content">
+	<div class="container">
+	<div class="row">
+		<div class="col-5 offset-7">
+			<span class="first ml-3"></span><span> First Interview</span>
+			<span class="second"></span><span> Second Interview</span>
+			<span class="third"></span><span> Third Interview</span>
+		</div>
+	</div>
+	
+	<hr class="mx-4" />
+	
+		<div id="calendar"  class="m-4"></div>
+		
+	</div>
+		
+	</ui:define>
+	
+	<ui:define name="custom_js">
+		<h:outputScript>
+		
+		document.addEventListener('DOMContentLoaded', function() {
+		    var calendarEl = document.getElementById('calendar');
+
+		    var calendar = new FullCalendar.Calendar(calendarEl, {
+		      initialView: 'dayGridMonth',
+		      initialDate: '2020-11-07',
+		      headerToolbar: {
+		        left: 'prev,next today',
+		        center: 'title',
+		        right: 'dayGridMonth,dayGridWeek,timeGridDay'
+		      },
+		       views: {
+					  dayGridWeek: {
+                            eventTimeFormat: {
+                                hour: 'numeric',
+                                minute: '2-digit',
+                                omitZeroMinute: true,
+                                meridiem: 'narrow'
+                            }
+                        }
+					  },
+		      events: #{interviewRecordBean.interviewRecordJson},
+		      editable: true,
+		      <!-- eventColor: 'skyblue', -->
+		     eventDidMount: function(info) {
+		        $(info.el).tooltip({
+		            title: 'Candidate: '+info.event.extendedProps.candidate+'\r\nCompany: '+info.event.extendedProps.company
+		        });
+		      },
+		      eventClick : function(info){
+		      	$('#company').html(info.event.extendedProps.company);
+		      	$('#candidate').html(info.event.extendedProps.candidate);
+		      	$('#status').html(info.event.extendedProps.status);
+		      	$('#date').html(info.event.start);
+		      	$('#type').html(info.event.extendedProps.type);
+		      	$('#interval').html(info.event.extendedProps.interval+' mins');
+		      	$('#fullCalModal').modal();
+		      	$('#editInterviewBtn').prop("href","#{request.contextPath}/views/detail_joborder.xhtml?joborderid="+info.event.extendedProps.joborderId);
+		      	
+		      	<!-- alert(info.event.extendedProps.company); -->
+		      }
+		    });
+
+		    calendar.render();
+		  });
+
+		
+ 	</h:outputScript>
+	</ui:define>
+</ui:composition>
+</html>

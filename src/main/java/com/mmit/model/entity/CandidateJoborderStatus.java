@@ -5,10 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: AvailabilityType
- *
- */
+
 @Entity
 @NamedQuery(name="CandidateJoborderStatus.findAll",query="SELECT cjs FROM CandidateJoborderStatus cjs")
 public class CandidateJoborderStatus implements Serializable {
@@ -25,6 +22,8 @@ public class CandidateJoborderStatus implements Serializable {
 	
 	@OneToMany(mappedBy = "tostatus")
 	private List<Pipelinehistory> tostatus_pipelinehistory;
+	
+
 	public int getId() {
 		return id;
 	}
@@ -58,6 +57,36 @@ public class CandidateJoborderStatus implements Serializable {
 	public CandidateJoborderStatus() {
 		super();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((short_description == null) ? 0 : short_description.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CandidateJoborderStatus other = (CandidateJoborderStatus) obj;
+		if (id != other.id)
+			return false;
+		if (short_description == null) {
+			if (other.short_description != null)
+				return false;
+		} else if (!short_description.equals(other.short_description))
+			return false;
+		return true;
+	}
+
+	
 
 	
 	

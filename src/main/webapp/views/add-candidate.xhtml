@@ -3,10 +3,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/template/template.xhtml">
-	<ui:define name="subtitle">Add Canditate</ui:define>
+	<ui:define name="subtitle">#{candidateBean.candidate.id != 0 ? 'Edit Candidate' : 'Add New Candidate'}</ui:define>
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
@@ -20,34 +21,45 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between px-4">
-									<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user-friends  mr-1"></i>#{candidateBean.candidate.id
+									<h6 class="m-0 font-weight-bold text-primary d-inline"><i class="fas fa-user-friends  mr-1"></i>#{candidateBean.candidate.id
 										!= 0 ? 'Edit Candidate' : 'Add New Candidate'}</h6>
-
+										
+									<span class="float-right" style="font-size: 16px;"><h:link value="" outcome="/views/candidates"><i class="fas fa-arrow-circle-left"></i></h:link></span>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class="row">
 										<div class="col-md-12 px-3">
-											<h:form styleClass="form" enctype="multipart/form-data">
-											<h:messages></h:messages>
+											<h:form styleClass="form" enctype="multipart/form-data" id="candidate_email_unique">
 												<h:inputHidden value="#{candidateBean.candidate.id}" />
 												<div class="form-row mb-4 mt-4">
 													<div class="form-group col-md-6 ">
 														<h:inputText value="#{candidateBean.candidate.name}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Candidate Name" />
+															p:placeholder="Candidate Name" validatorMessage="Please enter at most 25 characters!"  id="name">
+														<f:validateLength maximum="25"></f:validateLength>
+														</h:inputText>
+														<h:message for="name" styleClass="text-danger"/>
 													</div>
 													<div class="form-group col-md-6">
 														<h:inputText value="#{candidateBean.candidate.email}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Email" />
+															p:placeholder="Email" validatorMessage="Please enter no more than 50 characters!"  id="email">
+														<f:validateLength maximum="50"></f:validateLength>
+														</h:inputText>
+															<h:message for="email" styleClass="text-danger"/>
+															<h:message  for="candidate_email_unique"  styleClass="text-danger"  />
+															<span class="text-danger">${error_message != null ? error_message : ""}</span>
 													</div>
 												</div>
 												<div class="form-row mb-4 mt-4">
 													<div class="form-group col-md-6 ">
 														<h:inputText value="#{candidateBean.candidate.phone}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Phone" />
+															p:placeholder="Phone" validatorMessage="Please enter at most 20 characters!"  id="phone">
+														<f:validateLength maximum="20"></f:validateLength>
+														</h:inputText>
+														<h:message for="phone" styleClass="text-danger"/>
 													</div>
 													<div class="form-group col-md-6">
 														<h:selectOneMenu
@@ -63,7 +75,10 @@
 													<div class="form-group col-md-6 ">
 														<h:inputText value="#{candidateBean.candidate.key_skills}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Key Skills" />
+															p:placeholder="Key Skills" validatorMessage="Please enter at most 50 characters!"  id="keyskill">
+														<f:validateLength maximum="50"></f:validateLength>
+														</h:inputText>
+														<h:message for="keyskill" styleClass="text-danger"/>
 													</div>
 													<div class="form-group col-md-6">
 														<h:selectOneMenu
@@ -81,15 +96,32 @@
 														<h:inputText
 															value="#{candidateBean.candidate.expectedSalary}"
 															styleClass="form-control" p:required="required"
-															p:placeholder="Salary" p:type="number" />
+															p:placeholder="Salary" p:type="number" validatorMessage="Please enter no more than 15 characters!"  id="salary"  p:min="0">
+														<f:validateLength maximum="15"></f:validateLength>
+														<f:validateDoubleRange minimum="0" />
+														</h:inputText>
+														<h:message for="salary" styleClass="text-danger"/>
 													</div>
-													<div class="form-group col-md-6">
-														<h:inputFile id="file-id"
-															value="#{candidateBean.cv_form}"
-															alt="upload file"></h:inputFile>
+													<div class="form-group col-md-6" >
+													<!-- rendered="#{candidateBean.candidate.id == 0}" p:required="required" -->
+														<h:inputFile id="file-id" value="#{candidateBean.cv_form}" alt="upload file" p:required="#{candidateBean.candidate.id != 0 ? required : false}" style="width:500px;" p:accept="application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/plain, .doc, .docx" >
+															
+														</h:inputFile>
+														<div class="row mt-2 ml-1">
+															<h:outputLink value="#{request.contextPath}/CV_Uploads/#{candidateBean.candidate.cv_form}" rendered="#{candidateBean.candidate.cv_form != null}" >#{candidateBean.candidate.cv_form}</h:outputLink>
+														</div>
+														
 													</div>
+													
 												</div>
-												<div class="form-row mb-4 mt-4">
+												<div class="form-row mb-4 mt-1">
+												
+													<div class="form-group col-md-6 ">
+														<h:inputTextarea
+															value="#{candidateBean.candidate.remark}"
+															styleClass="form-control" 
+															p:placeholder="Remark" />
+													</div>
 													<div class="form-group col-md-6 ">
 														<div class="form-check">
 															<h:selectBooleanCheckbox
@@ -99,10 +131,15 @@
 														</div>
 													</div>
 												</div>
+												
+												<div class="form-row mb-4 mt-4">
+													
+												</div>
+												
 
 												<div class="d-flex justify-content-center">
-													<h:commandButton action="#{candidateBean.saveCandidate()}" value="#{candidateBean.candidate.id != 0 ? 'Update' : 'Add'}" styleClass="btn btn-primary">
-														<f:ajax execute="@form" listener="#{candidateBean.uploadFile()}"></f:ajax> <!-- render="divId" -->
+													<h:commandButton action="#{candidateBean.saveCandidate()}" actionListener="#{candidateBean.uploadFile()}" value="#{candidateBean.candidate.id != 0 ? 'Update' : 'Add'}" styleClass="btn btn-primary">
+														
 													</h:commandButton>
 												</div>
 											</h:form>

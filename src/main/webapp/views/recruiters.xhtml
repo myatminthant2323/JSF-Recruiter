@@ -3,28 +3,31 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/template/template.xhtml">
-<ui:define name="subtitle">All Recruiters</ui:define>
+<ui:define name="subtitle">Recruiters</ui:define>
 	<ui:define name="main_content">
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
-			<div
-				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h:link value="" outcome="/views/recruiter-add"
-					styleClass="btn btn-primary"><i class="fas fa-plus mr-1"></i>Add New Recruiter</h:link>
-
+			
+			<div class="d-sm-flex align-items-center justify-content-between mb-4">
+				<c:if test="#{loginBean.loginUser.level == 'Admin'}">
+					<h:link value="" outcome="/views/recruiter-add"
+						styleClass="btn btn-primary"><i class="fas fa-plus mr-1"></i>Add New Recruiter</h:link>
+				</c:if>
 			</div>
+			
 
 			<!-- Content Row -->
 			<div class="row">
 				<div class="container ">
 					<div class="row pt-3">
 						<div class="table-responsive">
-							<h:dataTable styleClass=" table table-striped table-bordered"
+							<h:dataTable styleClass=" table table-striped table-bordered table-datatable"
 								value="#{recruiterBean.recruiterList}" var="r" >
 								<h:column>
 									<f:facet name="header">ID</f:facet>
@@ -43,24 +46,26 @@
 									#{ r.email }
 								</h:column>
 								<h:column>
-									<f:facet name="header">Password</f:facet>
-									#{ r.password}
+									<f:facet name="header">Access Level</f:facet>
+									#{ r.level}
 								</h:column>
+								<c:if test="#{loginBean.loginUser.level == 'Admin'}">
 								<h:column>
 								<f:facet name="header">Action</f:facet>
-									<h:link value="Edit" outcome="/views/recruiter-add" styleClass="btn btn-primary" >
+									<h:link outcome="/views/recruiter-add" styleClass="btn btn-primary" >
 									<i class="fas fa-edit"></i>
 										<f:param name="recruiterid" value="#{r.id}"></f:param>
 									</h:link>
 								</h:column>
 								<h:column>
 									<h:form>
-										<h:commandLink action="#{recruiterBean.removeRecruiter(r.id)}"
-											value="remove"  styleClass="btn btn-danger" >
+										<h:commandLink action="#{recruiterBean.removeRecruiter(r.id)}" onclick=" if (! confirm('Do you want to delete?')) return false"
+											styleClass="btn btn-danger" >
 											<i class="fas fa-trash"></i>
 											</h:commandLink>
 									</h:form>
 								</h:column>
+								</c:if>
 							</h:dataTable>
 
 						</div>

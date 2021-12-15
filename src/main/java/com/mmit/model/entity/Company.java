@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.REMOVE;
 
 /**
  * Entity implementation class for Entity: Company
@@ -20,6 +21,7 @@ public class Company implements Serializable {
 	private String name;
 	@Basic(optional = false)
 	private String phone1;
+	@Basic(optional = true)
 	private String phone2;
 	@Basic(optional = false)
 	private String email;
@@ -45,9 +47,10 @@ public class Company implements Serializable {
 	
 	private LocalDate modifyDate;
 	private String ishot;
+	@Column(length = 100000)
 	private String remark;
 	
-	@OneToMany(mappedBy = "company")
+	@OneToMany(mappedBy = "company", cascade = REMOVE)
 	private List<JobOrder> company_joborder;
 	private static final long serialVersionUID = 1L;
 

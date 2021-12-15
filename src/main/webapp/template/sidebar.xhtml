@@ -13,23 +13,26 @@
 	id="accordionSidebar">
 
 	<!-- Sidebar - Brand -->
-	<a
-		class="sidebar-brand d-flex align-items-center justify-content-center"
-		href="index.html">
+	
+					
+					
+	<h:link value=""  outcome="/views/dashboard" styleClass="sidebar-brand d-flex align-items-center justify-content-center">
 		<div class="sidebar-brand-icon rotate-n-15">
 			<i class="fas fa-users"></i>
 		</div>
 		<div class="sidebar-brand-text mx-3">
 			SB Admin <sup>2</sup>
 		</div>
-	</a>
+	</h:link>
 
 	<!-- Divider -->
 	<hr class="sidebar-divider my-0"/>
 
 	<!-- Nav Item - Dashboard -->
 	<li class="nav-item active"><a class="nav-link" href="index.html">
-			<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+			<h:link value="" outcome="/views/dashboard" styleClass="nav-link">
+						<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+		 </h:link> 
 	</a></li>
 
 	<!-- Divider -->
@@ -41,18 +44,18 @@
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item">
 		 <h:link value="" outcome="/views/joborders" styleClass="nav-link">
-		 <i class="fas fa-suitcase text-white mr-2"></i>Job Orders
+		 <i class="fas fa-suitcase text-white mr-2"></i><span>Job Orders</span>
 		 </h:link>
 	</li>
 
 	<li class="nav-item">
 			<h:link value=""
-					outcome="/views/candidates" styleClass="nav-link"><i class="fas fa-user-friends text-white mr-2"></i>Candidates</h:link>
+					outcome="/views/candidates" styleClass="nav-link"><i class="fas fa-user-friends text-white mr-2"></i><span>Candidates</span></h:link>
 	</li>
 
 	<li class="nav-item">
 	<h:link value=""
-					outcome="/views/companys" styleClass="nav-link"><i class="fa fa-building text-white mr-2"></i>Companies</h:link>
+					outcome="/views/companys" styleClass="nav-link"><i class="fa fa-building text-white mr-2"></i><span>Companies</span></h:link>
 	</li>
 
 
@@ -65,13 +68,12 @@
 
 	<li class="nav-item">
 		<h:link value=""
-					outcome="/views/recruiters" styleClass="nav-link"><i class="fas fa-user-cog text-white mr-2"></i>Recruiters</h:link>
+					outcome="/views/recruiters" styleClass="nav-link"><i class="fas fa-user-cog text-white mr-2"></i><span>Recruiters</span></h:link>
 	</li>
 
 	<li class="nav-item">
-		<a class="nav-link" href="charts.html"> <i
-				class=""></i> <span><i class="fas fa-calendar-day text-white mr-2"></i>Activities</span>
-		</a>
+		<h:link value=""
+					outcome="/views/activities" styleClass="nav-link"><i class="fas fa-user-cog text-white mr-2"></i><span>Activities</span></h:link>
 	</li>
 
 	<!-- Divider -->
